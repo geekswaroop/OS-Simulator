@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contiguous Scheduling</title>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <link rel="stylesheet" href="stylesfile.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- <script src="file.js"></script> -->
+        <link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+            <img src = "home.png" width="25" height="25" >
+            <a class="navbar-brand" href="../Index/index.html#firstPage">Operating System Simulator</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+                <span class="navbar-toggler-icon"></span>
+              </button>    
+
+               <div class="dropdown">
+                <span style="margin-left: 900px; font-size: 20px ;"><a href="https://github.com/rounak06/pdffile/blob/master/wikifile.pdf" style="color: white;">Wiki</a></span>
+                <div class="dropdown-content" style="position: relative;">
+                <p>The allocation method defines how the files are stored in the disk blocks. The direct access nature of the disks gives us the flexibility to implement the files. In many cases, different files or many files are stored on the same disk. The main problem that occurs in the<span id="dots">...</span><span id="more"></p>
+                   
+                 </div>
+                </div> 
+          </nav>
+          <marquee class="some" behavior="alternate" scrollamount=10 align="center"><h1>Contiguous Scheduling</h1></marquee>
+
+            <div class="container">
+                <!-- <div class="jumbotron">
+                    <h1 class="display-3">Disk Scheduling</h1>
+                    <p class="lead">Disk scheduling is the method that computer operating systems use to decide in which order the block I/O operations will be submitted to storage volumes. I/O scheduling is sometimes called disk scheduling.</p>
+                    <hr class="my-4">
+                    <p>Some more details here</p>
+                </div> -->
+                <script>
+                    function option(nameSelect)
+                    {
+                        console.log(nameSelect);
+                       document.getElementById("admDivCheck").style.display="none";
+                    }
+                </script>
+                <form>
+                    <fieldset>
+                        <div class="row">
+                            <div class="form-group" style="margin-left:50px; float:left;">
+                                <label for="exampleSelect1">Algorithm</label>
+                                <select class="form-control" id="algorithm" onchange="option(this);">
+                                    <option id="op1" value="contiguous">Contiguous</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-left: 50px;float: left;display: none;" id="admDivCheck">
+                            </div>
+                        </div>
+                        <div class="row">
+                           <!--  <div class="form-group" style="margin-left:50px; float:left;  width: 20%">
+                                <label class="col-form-label" for="inputDefault">File Input Size</label>
+                                <input class="form-control" id="bitstream-input" name="bitstream" placeholder="Space-separated sequence" type="text" size="35">
+                            </div> -->
+                             <div class="form-group" style="margin-left:50px; float:left; width: 20%">
+                                <label class="col-form-label" for="inputDefault">Number Of Blocks</label>
+                                <input class="form-control" id="initial-input" name="intial"  type="text" size="35">
+                            </div>
+                             <div class="form-group" style="margin-left:50px; float:left;  width: 20%">
+                                <label class="col-form-label" for="inputDefault">Block Size</label>
+                                <input class="form-control" id="final-input" name="final"  type="text" size="35">
+                            </div>
+                             <div class="form-group" style="margin-left:50px; float:left;  width: 20%">
+                                <label class="col-form-label" for="inputDefault">File Input Size</label>
+                                <input class="form-control" id="bitstream-input" name="bitstream" placeholder="Space-separated sequence" type="text" size="35">
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+                <form>
+                <input type="button" class="button2" value="Submit"  onclick="filealgo(document.getElementById('algorithm').value,document.getElementById('bitstream-input').value,document.getElementById('initial-input').value,document.getElementById('final-input').value)">
+            </form>
+            </div>
+            <br>
+            <br>
+            <script >
+                //alert("HEU");
+                 //document.getElementById("Print").innerHTML="hey";
+                function filealgo(algo,filesize,numberofblocks,blocksize)
+                {
+                     //document.getElementById("Print").innerHTML="hey";
+                   // alert("Hey");
+                   var res = filesize.split(" ");
+                   var inp = [];
+                   for(i=0;i<res.length;i++)
+                   {
+                    inp.push(parseInt(res[i]));
+                   }
+                  // document.getElementById("Print").innerHTML=inp.length;
+                   filesize=parseInt(filesize);
+                   numberofblocks=parseInt(numberofblocks);
+                   blocksize=parseInt(blocksize);
+                   if(algo=="contiguous")
+                   {
+                    contiguous(inp,numberofblocks,blocksize);
+                   }
+
+                }
+
+                function contiguous(inp, numberofblocks, blocksize)
+                {
+                    // document.getElementById("Print").innerHTML=inp.length;
+                    // document.getElementById("Print").innerHTML=inp[1];
+                    var bvisited = new Array(50);
+                    var bindex = new Array(50);
+                    var allocate = [];
+                     var text1 = "";
+                     
+                    for(i=0;i<50;i++)
+                    {
+                        bvisited[i]=0;
+                        bindex[i]=i;                    
+                    }
+                    var filelength = inp.length;
+                    var sindex=0,count=0,count_blocks=0;
+                    for(i=0;i<filelength;i++){
+                        //console.log("hey");
+                        count=0;
+                        var text = "";
+                     //  document.getElementById("Print").innerHTML = inp.length;
+
+                    if((inp[i]<=blocksize)&&(count_blocks<numberofblocks))
+                    {
+                        allocate[count]=count_blocks;
+                        bvisited[count_blocks]=1;
+                        inp[i]=inp[i]-blocksize;
+                        count++;
+                       // count_blocks++;
+
+                    }
+                    else if(inp[i]>blocksize)
+                    {
+                        while((inp[i]>0)&&(bvisited[count_blocks+count]==0)&&((count_blocks+count)<numberofblocks))
+                        {
+                            allocate[count]=count_blocks+count;
+                            inp[i]=inp[i]-blocksize;
+                            bvisited[count_blocks+count]=1;
+                            count++;
+                           // count_blocks++;
+                        }
+                        // count_blocks=count_blocks+count;
+                        sindex=sindex+count;
+                    }
+                    if(inp[i]<=0){
+                         count_blocks=count_blocks+count;
+                        for(k=0;k<count;k++)
+                        {
+                            text=text+(allocate[k]+1)+"------>";
+                            // document.getElementById("Blocks_allocated").innerHTML="Block Alloted: " +allocate[i];
+                        }
+                         text1=text1+"Block Alloted: "+text+"<br>";
+
+                }
+                else if(inp[i]>0){
+                    text1=text1+"Block not alloted"+"<br>";
+                }
+            }
+            document.getElementById("Blocks_allocated").innerHTML=text1;
+            }
+            </script>
+            <br>
+            <br>
+            <div class="container">
+                <div id="alg_name"></div>
+                <div id="Blocks_allocated"></div>
+            </div>
+            <div class="container">
+                <div id="alg_name"></div>
+                <div id="Print"></div>
+            </div>
+            <br>
+            <br>
+        </body>
+        </html>
+
+

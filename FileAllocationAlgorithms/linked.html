@@ -1,0 +1,656 @@
+<html>
+<head>
+	<title>Linked Allocation</title>
+	    <meta charset="UTF-8">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+ <link rel="stylesheet" href="stylesfile.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
+	<!-- <style>
+	.s_hide{
+		display: none;
+	}
+	.s_show{
+		display: block;
+	}
+	.some{
+		background-color: #3CBC8D;
+		color:black;
+	}
+
+	input{
+		 width: 10%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: #3CBC8D;
+    color: white;
+
+	}
+
+	.anchor,.anchor1{
+		 background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 0;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+		
+	}
+	
+
+	.style1{
+		background-color:red;
+		color:white;
+	}
+
+  
+  	.button1 {
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 0;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
+
+
+
+.button1:hover {
+    background-color: #3CBC8D;
+    color: white;
+}
+  
+	.a1{
+		
+		border: none;
+		 margin: 8px 0;
+		border:solid 2px white;
+		background-color: yellow;
+		  text-align: center;
+		font-weight: bold;
+		font-size: 16px;
+
+	}
+	</style> -->
+</head>
+
+<body onload="initialise()">
+
+	 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	 	<img src = "home.png" width="25" height="25" >
+            <a class="navbar-brand" href="../Index/index.html#firstPage">Operating System Simulator</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+                <span class="navbar-toggler-icon"></span>
+              </button>     
+
+               <div class="dropdown">
+                <span style="margin-left: 900px; font-size: 20px ;"><a href="https://github.com/rounak06/pdffile/blob/master/wikifile.pdf" style="color: white;">Wiki</a></span>
+                <div class="dropdown-content" style="position: relative;">
+                <p>The allocation method defines how the files are stored in the disk blocks. The direct access nature of the disks gives us the flexibility to implement the files. In many cases, different files or many files are stored on the same disk. The main problem that occurs in the<span id="dots">...</span><span id="more"></p>
+                   
+                 </div>
+                </div>
+          </nav>
+
+	<marquee class="some" behavior="alternate" scrollamount=10 align="center"><h1>Linked Scheduling</h1></marquee>
+	<!-- <a class="button1" style="align:center" href="Index page/index._page.html">Go Back</a> -->
+<p > Enter the number of files </p>
+	<input id="nof" type="number">
+
+	<button class="button1"  onclick="show_fields()">OK</button>
+	
+	<!-- =======================input fields =================================-->
+	<form class="s_hide">
+			<p> Your First File </p>
+		Starting Block:	<input id="file_no" type="number">
+		Enter the size of the file:	 <input type="number">
+		Enter the size of the block: <input type="number">
+		<div class="anchor" onclick="inside_form(0)">
+			<a >DONE</a> 
+		</div align="left">
+			<ul>
+			<li class="s_hide">	Block_1: <input  type="number"></li>
+			<li class="s_hide">	Block_2: <input  type="number"></li>
+			<li class="s_hide">	Block_3: <input  type="number"></li>
+			<li class="s_hide">	Block_4: <input  type="number"></li>
+			<li class="s_hide">	Block_5: <input  type="number"></li>
+			<li class="s_hide">	Block_6: <input  type="number"></li>
+			<li class="s_hide">	Block_7: <input  type="number"></li>
+			<li class="s_hide">	Block_8: <input  type="number"></li>
+			<li class="s_hide">	Block_9: <input  type="number"></li>
+			<li class="s_hide">	Block_10:<input type="number"></li>		
+			</ul>
+			<div class="anchor" onclick="allocate(0)">
+			<a>ALLOCATE</a>  
+			</div>
+			<div class="anchor1" onclick="del(0)">
+				<a>CONFIRM</a> 
+			</div>
+			<p class="frag_place" style="background-color: black ;color:white"></p><br>
+		
+		</form>
+
+	<form class="s_hide">
+			<p> Your Second File </p>
+		Starting block:	<input  id="file_no" type="number">
+		Enter the size of the file:	 <input type="number">
+		Enter the size of the block: <input type="number">
+		<div class="anchor" onclick="inside_form(1)">
+			<a >DONE</a> 
+		</div>
+			<ul>
+			<li class="s_hide">	Block_1: <input  type="number"></li>
+			<li class="s_hide">	Block_2: <input  type="number"></li>
+			<li class="s_hide">	Block_3: <input  type="number"></li>
+			<li class="s_hide">	Block_4: <input  type="number"></li>
+			<li class="s_hide">	Block_5: <input  type="number"></li>
+			<li class="s_hide">	Block_6: <input  type="number"></li>
+			<li class="s_hide">	Block_7: <input  type="number"></li>
+			<li class="s_hide">	Block_8: <input  type="number"></li>
+			<li class="s_hide">	Block_9: <input  type="number"></li>
+			<li class="s_hide">	Block_10:<input type="number"></li>		
+			</ul>
+			<div class="anchor" onclick="allocate(1)">
+			<a >ALLOCATE</a>  
+		</div>
+			<div class="anchor1" onclick="del(1)">
+				<a>CONFIRM</a> 
+			</div>
+			<p class="frag_place" style="background-color: black ;color:white"></p><br>
+	
+	</form>
+
+	<form class="s_hide">
+			<p> Your Third File </p>
+		Starting block:	<input  id="file_no" type="number">
+		Enter the size of the file:	 <input type="number">
+		Enter the size of the block: <input type="number">
+		<div class="anchor">
+			<a onclick="inside_form(2)">DONE</a> 
+		</div>
+			<ul>
+			<li class="s_hide">	Block_1: <input  type="number"></li>
+			<li class="s_hide">	Block_2: <input  type="number"></li>
+			<li class="s_hide">	Block_3: <input  type="number"></li>
+			<li class="s_hide">	Block_4: <input  type="number"></li>
+			<li class="s_hide">	Block_5: <input  type="number"></li>
+			<li class="s_hide">	Block_6: <input  type="number"></li>
+			<li class="s_hide">	Block_7: <input  type="number"></li>
+			<li class="s_hide">	Block_8: <input  type="number"></li>
+			<li class="s_hide">	Block_9: <input  type="number"></li>
+			<li class="s_hide">	Block_10:<input type="number"></li>		
+			</ul>
+			<div class="anchor" onclick="allocate(2)">
+			<a>ALLOCATE</a>  
+		</div>
+		<div class="anchor1" onclick="del(2)">
+				<a>CONFIRM</a> 
+			</div>
+		  <p class="frag_place" style="background-color: black ;color:white"></p><br>
+		
+	</form>
+
+	<form class="s_hide">
+			<p> Your Fourth File </p>
+		Strating block:	<input  id="file_no" type="number">
+		Enter the size of the file:	 <input type="number">
+		Enter the size of the block: <input type="number">
+		<div class="anchor">
+			<a onclick="inside_form(3)">DONE</a> 
+		</div>
+			<ul>
+			<li class="s_hide">	Block_1: <input  type="number"></li>
+			<li class="s_hide">	Block_2: <input  type="number"></li>
+			<li class="s_hide">	Block_3: <input  type="number"></li>
+			<li class="s_hide">	Block_4: <input  type="number"></li>
+			<li class="s_hide">	Block_5: <input  type="number"></li>
+			<li class="s_hide">	Block_6: <input  type="number"></li>
+			<li class="s_hide">	Block_7: <input  type="number"></li>
+			<li class="s_hide">	Block_8: <input  type="number"></li>
+			<li class="s_hide">	Block_9: <input  type="number"></li>
+			<li class="s_hide">	Block_10:<input type="number"></li>		
+			</ul>
+			<div class="anchor">
+			<a onclick="allocate(3)">ALLOCATE</a>  
+		</div>
+		<div class="anchor1" onclick="del(3)">
+				<a>CONFIRM</a> 
+			</div>
+		    <p class="frag_place" style="background-color: black ;color:white"></p><br>
+	</form>
+
+		<form class="s_hide">
+			<p> Your Fifth File </p>
+		Starting block:	<input  id="file_no" type="number">
+		Enter the size of the file:	 <input type="number">
+		Enter the size of the block: <input type="number">
+		<div class="anchor">
+			<a onclick="inside_form(4)">DONE</a> 
+		</div>
+			<ul>
+			<li class="s_hide">	Block_1: <input  type="number"></li>
+			<li class="s_hide">	Block_2: <input  type="number"></li>
+			<li class="s_hide">	Block_3: <input  type="number"></li>
+			<li class="s_hide">	Block_4: <input  type="number"></li>
+			<li class="s_hide">	Block_5: <input  type="number"></li>
+			<li class="s_hide">	Block_6: <input  type="number"></li>
+			<li class="s_hide">	Block_7: <input  type="number"></li>
+			<li class="s_hide">	Block_8: <input  type="number"></li>
+			<li class="s_hide">	Block_9: <input  type="number"></li>
+			<li class="s_hide">	Block_10:<input type="number"></li>		
+			</ul>
+		<div class="anchor">	
+			<a onclick="allocate(4)">ALLOCATE</a> 
+		</div>
+		<div class="anchor1" onclick="del(4)">
+				<a>CONFIRM</a> 
+			</div>
+		<p class="frag_place" style="background-color: black ;color:white"></p><br>
+		</form>
+
+		<form class="s_hide">
+			<p> Your Sixth File </p>
+		Starting block:	<input  id="file_no" type="number">
+		Enter the size of the file:	 <input type="number">
+		Enter the size of the block: <input type="number">
+		<div class="anchor">
+			<a onclick="inside_form(5)">ok</a> 
+		</div>
+				<ul>
+			<li class="s_hide">	Block_1:<input  type="number"></li>
+			<li class="s_hide">	Block_2:<input  type="number"></li>
+			<li class="s_hide">	Block_3:<input  type="number"></li>
+			<li class="s_hide">	Block_4:<input  type="number"></li>
+			<li class="s_hide">	Block_5:<input  type="number"></li>
+			<li class="s_hide">	Block_6:<input  type="number"></li>
+			<li class="s_hide">	Block_7:<input  type="number"></li>
+			<li class="s_hide">	Block_8:<input  type="number"></li>
+			<li class="s_hide">	Block_9:<input  type="number"></li>
+			<li class="s_hide">	Block_10:<input type="number"></li>		
+			</ul>
+			<div class="anchor">
+			<a onclick="allocate(5)">ALLOCATE</a> 
+		</div>
+		<div class="anchor1" onclick="del(5)">
+				<a>CONFIRM</a> 
+			</div>
+		 <p class="frag_place" style="background-color: black ;color:white"></p><br>
+		</form>
+
+		<form class="s_hide">
+			<p> Your Seventh File </p>
+		Starting block:	<input  id="file_no" type="number">
+		Enter the size of the file:	 <input type="number">
+		Enter the size of the block: <input type="number">
+		<div class="anchor">
+			<a onclick="inside_form(6)">DONE</a> 
+		</div>
+			<ul>
+			<li class="s_hide">	Block_1: <input  type="number"></li>
+			<li class="s_hide">	Block_2: <input  type="number"></li>
+			<li class="s_hide">	Block_3: <input  type="number"></li>
+			<li class="s_hide">	Block_4: <input  type="number"></li>
+			<li class="s_hide">	Block_5: <input  type="number"></li>
+			<li class="s_hide">	Block_6: <input  type="number"></li>
+			<li class="s_hide">	Block_7: <input  type="number"></li>
+			<li class="s_hide">	Block_8: <input  type="number"></li>
+			<li class="s_hide">	Block_9: <input  type="number"></li>
+			<li class="s_hide">	Block_10:<input type="number"></li>		
+			</ul>
+			<div class="anchor">
+			<a onclick="allocate(6)">ALLOCATE</a> 
+		</div>
+		<div class="anchor1" onclick="del(6)">
+				<a>CONFIRM</a> 
+			</div>
+		    <p class="frag_place" style="background-color: black ;color:white"></p><br>
+		</form>
+
+		<form class="s_hide">
+			<p> Your Eight File </p>
+		Strating block:	<input  id="file_no" type="number">
+		Enter the size of the file:	 <input type="number">
+		Enter the size of the block: <input type="number">
+		<div class="anchor">
+			<a onclick="inside_form(7)">DONE</a> 
+		</div>
+			<ul>
+			<li class="s_hide">	Block_1: <input  type="number"></li>
+			<li class="s_hide">	Block_2: <input  type="number"></li>
+			<li class="s_hide">	Block_3: <input  type="number"></li>
+			<li class="s_hide">	Block_4: <input  type="number"></li>
+			<li class="s_hide">	Block_5: <input  type="number"></li>
+			<li class="s_hide">	Block_6: <input  type="number"></li>
+			<li class="s_hide">	Block_7: <input  type="number"></li>
+			<li class="s_hide">	Block_8: <input  type="number"></li>
+			<li class="s_hide">	Block_9: <input  type="number"></li>
+			<li class="s_hide">	Block_10:<input type="number"></li>		
+			</ul>
+			<div class="anchor">
+				<a onclick="allocate(7)">ALLOCATE</a> 
+			</div>
+			<div class="anchor1" onclick="del(7)">
+				<a>CONFIRM</a> 
+			</div>
+                 <p class="frag_place" style="background-color: black ;color:white"></p><br>
+		</form>
+
+<p id="error_check"></p>
+<div class="s_hide" id="output_space">
+	<p class="out"></p>
+	<p class="out"></p>
+	<p class="out"></p>
+	<p class="out"></p>
+	<p class="out"></p>
+	<p class="out"></p>
+	<p class="out"></p>
+	<p class="out"></p>	
+		
+</div>
+</body>
+
+<script>
+/*to display the input fields*/
+	var form_no = -1,show_output=-1;
+	var file_ind=[],count=1;
+
+	function show_fields()
+	{
+			var no_of_files = document.getElementById("nof").value;
+			for(var i=0;i<no_of_files;++i)	
+				s_add_in();
+		
+	}
+
+	function s_add_in()
+	{
+		form_no = form_no +1;
+		var f = document.getElementsByTagName("form")[form_no];
+
+		var att = document.createAttribute("class");
+		att.value ="s_show";
+
+		f.setAttributeNode(att);
+	}
+
+/*to display the block numbers*/
+var block_number=[];
+
+windows.onload = function()
+{
+	initialise();
+};
+
+	function initialise()
+	{
+		for(var i=0;i<8;++i)
+		{
+			block_number.push(-1);
+		}
+		for(var i=0;i<1000;++i)
+			file_ind.push(-1);
+	}
+
+	function inside_form(form_numb)
+	{
+		var pos = 13*form_numb;		//this is the base value
+/*		document.getElementById("sample").innerHTML = block_number[form_numb];*/
+		var ch = check(form_numb);
+		if(ch == 0)
+			return;
+
+		var file_size = document.getElementsByTagName("input")[pos+2].value;
+		var blk_size = document.getElementsByTagName("input")[pos+3].value;
+
+		var no_of_blocks = (file_size / blk_size);
+		var pos_li = form_numb *10;
+		//changed here -1
+		for(var i=0;i<no_of_blocks-1;++i)
+		{
+			var f = document.getElementsByTagName("li")[pos_li+i];
+			var att = document.createAttribute("class");
+			att.value ="s_show";
+			f.setAttributeNode(att);
+		}
+
+		var y = 3*form_numb +1;
+		var f = document.getElementsByTagName("a")[y];
+		var att = document.createAttribute("class");
+		att.value = "s_show";
+		f.setAttributeNode(att);
+	}
+
+	function check(in_num)
+	{
+		var len = file_ind.length;
+		var z = in_num *13 +1;
+		var index = document.getElementsByTagName("input")[z].value;
+
+		if(file_ind[index] == 1)
+		{
+			alert("The file index "+ index +"is already allocated");
+			return 0;
+		}	
+		else
+		{
+			file_ind[index]  =1;
+			return 1;
+		}
+	}
+
+	/*===================================ALLOCATION==============================*/
+
+
+	function allocate(in_form)
+	{
+		var str = [];
+		var pos = 13* in_form;
+		var values = in_form * 10;
+		var file_size = document.getElementsByTagName("input")[pos+2].value;
+		var blk_size = document.getElementsByTagName("input")[pos+3].value;
+
+		var no_of_blocks = Math.ceil (file_size / blk_size);
+
+		//for each and every entry check whether it is allocated or not
+		for(var i=0;i<no_of_blocks;++i)
+		{
+			var x1 = document.getElementsByTagName("li")[values+i];	//this will give us the values+i th li element
+			var x = x1.getElementsByTagName("input")[0].value;		// this will give us the 0th input element in the x1 li , we put 0 coz each 														li has only 1 input
+			if(file_ind[x] == 1)
+			{
+				alert("The file index "+ x +" is already allocated");
+				return;
+			}
+			
+			else{
+				file_ind[x]=1;
+			}
+			
+			if(i == no_of_blocks-1)
+			{
+				alert("All the files have been allocated");
+				var frag;
+				frag=((no_of_blocks)*blk_size)-file_size;
+				if(frag!=0)
+				{
+				  //document.getElementsByClassName("frag_place")[in_form].innerHTML="<h3>Internal Fragment :"+frag;
+			    }
+
+				var f =document.getElementById("output_space");
+				var att = document.createAttribute("class");
+				att.value = "s_show";
+				f.setAttributeNode(att);
+
+				var index_value = document.getElementsByTagName("input")[pos+1].value;
+				str = str + index_value ;
+
+				if(no_of_blocks == (file_size / blk_size) )
+				{
+					str="File "+count+" is allocated "+str;
+						for(var i=0;i<no_of_blocks;++i)
+						{
+
+							// im retriving the file number(block number) and put it in the chosen paragraphs
+							var x1 = document.getElementsByTagName("li")[values+i];
+							var x = x1.getElementsByTagName("input")[0].value;	
+							if(i== no_of_blocks-1)
+							{
+								str = str + "--->" + x;	
+							}
+							else{
+								str = str + "--->" + x;
+							}
+							//str="File "+count+"is allocated "
+							if(i == no_of_blocks-1){
+								var k = document.getElementsByClassName("out")[in_form];
+								k.innerHTML = str;
+
+								// if(in_form == 0){
+								// 	k.style.backgroundColor = "#3CBC8D";
+								// 	k.style.color = "black";
+								// }
+								// if(in_form == 1){
+								// 	k.style.backgroundColor = "black";
+								// 	k.style.color = "white";
+								// }
+								// if(in_form == 2){
+								// 	k.style.backgroundColor = "#3CBC8D";
+								// 	k.style.color = "black";
+								// }
+								// if(in_form == 3){
+								// 	k.style.backgroundColor = "black";
+								// 	k.style.color = "white";
+								// }
+								// if(in_form == 4){
+								// 	k.style.backgroundColor = "#3CBC8D";
+								// 	k.style.color = "black";
+								// }
+								// if(in_form == 5){
+								// 	k.style.backgroundColor = "black";
+								// 	k.style.color = "white";
+								// }
+								// if(in_form == 6){
+								// 	k.style.backgroundColor = "#3CBC8D";
+								// 	k.style.color = "black";
+								// }
+								// if(in_form == 7){
+								// 	k.style.backgroundColor = "black";
+								// 	k.style.color = "white";
+								// }
+							}
+						}
+					}
+					else
+                        {
+                        	str="File "+count+" is allocated "+str;
+
+                          for(var i=0;i<no_of_blocks;++i)
+						{
+							var x1 = document.getElementsByTagName("li")[values+i];
+							var x = x1.getElementsByTagName("input")[0].value;	
+							if(i== no_of_blocks-1)
+							{
+								str = str + "--->" + x;	
+							}
+							else{
+								str = str + "--->" + x;
+							}
+							
+							/* for file 1 give red,2->blue*/
+							//here we style the output paragraph
+							if(i== no_of_blocks-1){
+								var k = document.getElementsByClassName("out")[in_form];
+								k.innerHTML = str;
+
+								// if(in_form == 0){
+								// 	k.style.backgroundColor = "#3CBC8D";
+								// 	k.style.color = "black";
+								// }
+								// if(in_form == 1){
+								// 	k.style.backgroundColor = "black";
+								// 	k.style.color = "white";
+								// }
+								// if(in_form == 2){
+								// 	k.style.backgroundColor = "#3CBC8D";
+								// 	k.style.color = "black";
+								// }
+								// if(in_form == 3){
+								// 	k.style.backgroundColor = "black";
+								// 	k.style.color = "white";
+								// }
+								// if(in_form == 4){
+								// 	k.style.backgroundColor = "#3CBC8D";
+								// 	k.style.color = "black";
+								// }
+								// if(in_form == 5){
+								// 	k.style.backgroundColor = "black";
+								// 	k.style.color = "white";
+								// }
+								// if(in_form == 6){
+								// 	k.style.backgroundColor = "#3CBC8D";
+								// 	k.style.color = "black";
+								// }
+								// if(in_form == 7){
+								// 	k.style.backgroundColor = "black";
+								// 	k.style.color = "white";
+								// }
+							}
+						}
+                        }
+                        count++;
+			}
+		}
+	}
+
+	function del(in_form)
+	{
+		var out_start=0;
+		//find the starting index of the output
+		for(var i=0;i<8;++i)
+		{
+			var pos = 13* in_form;
+			var values = in_form * 10;
+			var file_size = document.getElementsByTagName("input")[pos+2].value;
+			var blk_size = document.getElementsByTagName("input")[pos+3].value;
+
+			var values = in_form * 10;
+
+			var no_of_blocks = Math.ceil (file_size / blk_size);
+
+			
+
+			if(i == in_form)
+			{
+				file_ind[in_form] = 0;
+				var k =document.getElementsByClassName("out")[in_form];
+				k.innerHTML = "";
+				for(var j=0; j<no_of_blocks; ++j)
+				{
+					var x1 = document.getElementsByTagName("li")[values+j];	//this will give us the values+i th li element
+					var x = x1.getElementsByTagName("input")[0].value;
+
+					file_ind[x] = 0;
+				}
+			}
+
+			out_start = out_start + no_of_blocks;
+		}	
+	}
+
+</script>
+</html>

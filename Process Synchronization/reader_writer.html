@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<head>
+  <link href="css/css_read_write.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
+  <link rel="stylesheet" href="build.css">
+
+</head>
+
+<body bgcolor="#FFFFFF">
+  <!-- jQuery (necessary for Bootstrap/home/saurabh/4th sem/OS LAB/OS-Simulator/Process Synchronization/dining.html's JavaScript plugins) -->
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="../Index/index.html">Operating System Simulator</a>
+    <a class="navbar-brand " href="rw_wiki.html">Wiki</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="background: ">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+  </nav>
+  <script src="js/bootstrap.min.js"></script>
+  <div class="container-fluid">
+    <center><h1><font color="black">Reader-Writer Problem </font></h1></center>
+    <form onsubmit="return false">
+      <p><br /></p>
+      <font color="black">
+      <h2 id="read">READERS</h2>
+      <h2 id="write">WRITERS</h2>
+
+
+      <div class="Readers">
+      <h4>First Reader:  </h4>
+      <input type = "checkbox", name = "first">  Read
+      </div>
+      <div class="Writers">
+      <h4>First Writer:  </h4>
+          <input type = "checkbox", name = "first">
+              Write
+      </div>
+      <!-- <p style="font-size:10px"><br /><br /></p> -->
+
+      <div class="Readers">
+      <h4>Second Reader:  </h4>
+      <input type = "checkbox", name = "second">  Read
+      </div>
+      <div class="Writers">
+      <h4>Second Writer:  </h4>
+          <input type = "checkbox", name = "second">
+              Write
+      </div>
+      <!-- <p style="font-size:10px"><br /><br /></p> -->
+
+      <div class="Readers">
+      <h4>Third Reader:  </h4>
+      <input type = "checkbox", name = "third">  Read
+      </div>
+      <div class="Writers">
+      <h4>Third Writer:  </h4>
+          <input type = "checkbox", name = "third">
+              Write
+      </div>
+      <!-- <p style="font-size:10px"><br /><br /></p> -->
+
+      <div class="Readers">
+      <h4>Fourth Reader:  </h4>
+      <input type = "checkbox", name = "fourth">  Read
+      </div>
+      <div class="Writers">
+      <h4>Fourth Writer:  </h4>
+          <input type = "checkbox", name = "fourth">Write
+      </div>
+      <!-- <p style="font-size:10px"><br /><br /></p> -->
+
+      <div class="Readers">
+      <h4>Fifth Reader:  </h4>
+      <input type = "checkbox", name = "fifth">  Read
+      </div>
+      <div class="Writers">
+      <h4>Fifth Writer:  </h4>
+          <input type = "checkbox", name = "fifth">
+              Write
+      </div>
+      <!-- <p style="font-size:10px"><br /><br /></p> -->
+      <br /><br />
+        </font>
+      <input type = "submit", name ="Go!", onclick="update()", class="btn btn-primary">
+
+    </form>
+    <table class="table-striped statustable">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="statusrow">#</th>
+      <th scope="col" class="statusrow">Reader</th>
+      <th scope="col" class="statusrow">Writer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" class="statusrow">1</th>
+      <td class="statusrow" id="r1">IDLE</td>
+      <td class="statusrow" id="w1">IDLE</td>
+    </tr>
+    <tr>
+      <th scope="row" class="statusrow">2</th>
+      <td class="statusrow" id="r2">IDLE</td>
+      <td class="statusrow" id="w2">IDLE</td>
+    </tr>
+    <tr>
+      <th scope="row" class="statusrow">3</th>
+      <td class="statusrow" id="r3">IDLE</td>
+      <td class="statusrow" id="w3">IDLE</td>
+    </tr>
+    <tr>
+      <th scope="row" class="statusrow">4</th>
+      <td class="statusrow"id="r4" >IDLE</td>
+      <td class="statusrow" id="w4">IDLE</td>
+    </tr>
+    <tr>
+      <th scope="row" class="statusrow">5</th>
+      <td class="statusrow" id="r5">IDLE</td>
+      <td class="statusrow" id="w5">IDLE</td>
+    </tr>
+  </tbody>
+</table>
+
+    <div>
+      <form>
+        <textarea id="doc"  disabled=""> </textarea>
+      </form>
+    </div>
+    <script type = "text/javascript">
+      var mutex =-1;
+      function update()
+      {
+
+        var checkW =0;
+        for(var i=0;i<11;i++)
+        {
+          //alert(i);
+          if(i%2 != 0 && document.forms[0].elements[i].checked==true)
+          {
+            //alert(i);
+            checkW=1;
+          }
+        }
+        //alert(i);
+        if(checkW==0)
+        {
+          mutex=-1;
+          //var change = document.getElementById("lock");
+          //change.innerHTML ="Writing Lock:"
+        }
+        for(var i=0;i<11;i++)
+        {
+          if(i%2 !=0 && document.forms[0].elements[i].checked == true && (mutex==(i-1)/2 || mutex==-1))
+          {
+            for(var j=0;j<11;j++)
+            {
+              if(j!=i/* && j%2 ==0*/)// important change made here
+              {
+                document.forms[0].elements[j].checked = false;
+              }
+            }
+          }
+        }
+        // for(var i=0;i<15;i++)
+        // {
+        //   document.getElementById("one").style.backgroundColor = '#FFFFFF';
+        //   document.getElementById("two").style.backgroundColor = '#FFFFFF';
+        //   document.getElementById("three").style.backgroundColor = '#FFFFFF';
+        //   document.getElementById("four").style.backgroundColor = '#FFFFFF';
+        //   document.getElementById("five").style.backgroundColor = '#FFFFFF';
+        //   document.getElementById("six").style.backgroundColor = '#FFFFFF';
+        //   document.getElementById("seven").style.backgroundColor = '#FFFFFF';
+        // }
+        //alert(mutex);
+            if(document.forms[0].elements[0].checked == true)
+            {
+              //document.getElementById("one").style.backgroundColor = '#00BFFF';
+              var c=1;
+              document.getElementById("r"+c).innerHTML="Reading...";
+              document.getElementById("w1").innerHTML="IDLE";
+              document.getElementById("w2").innerHTML="IDLE";
+              document.getElementById("w3").innerHTML="IDLE";
+              document.getElementById("w4").innerHTML="IDLE";
+              document.getElementById("w5").innerHTML="IDLE";
+              mutex =-1;
+            }
+            if(document.forms[0].elements[2].checked == true)
+            {
+              //document.getElementById("two").style.backgroundColor = '#00BFFF';
+              var c=2;
+              document.getElementById("r"+c).innerHTML="Reading...";
+              document.getElementById("w1").innerHTML="IDLE";
+              document.getElementById("w2").innerHTML="IDLE";
+              document.getElementById("w3").innerHTML="IDLE";
+              document.getElementById("w4").innerHTML="IDLE";
+              document.getElementById("w5").innerHTML="IDLE";
+              mutex =-1;
+            }
+            if(document.forms[0].elements[4].checked == true)
+            {
+              //document.getElementById("three").style.backgroundColor = '#00BFFF';
+              var c=3;
+              document.getElementById("r"+c).innerHTML="Reading...";
+              document.getElementById("w1").innerHTML="IDLE";
+              document.getElementById("w2").innerHTML="IDLE";
+              document.getElementById("w3").innerHTML="IDLE";
+              document.getElementById("w4").innerHTML="IDLE";
+              document.getElementById("w5").innerHTML="IDLE";
+              mutex =-1;
+            }
+            if(document.forms[0].elements[6].checked == true)
+            {
+              //document.getElementById("four").style.backgroundColor = '#00BFFF';
+              var c=4;
+              document.getElementById("r"+c).innerHTML="Reading...";
+              document.getElementById("w1").innerHTML="IDLE";
+              document.getElementById("w2").innerHTML="IDLE";
+              document.getElementById("w3").innerHTML="IDLE";
+              document.getElementById("w4").innerHTML="IDLE";
+              document.getElementById("w5").innerHTML="IDLE";
+              mutex =-1;
+            }
+            if(document.forms[0].elements[8].checked == true)
+            {
+              //document.getElementById("five").style.backgroundColor = '#00BFFF';
+              var c=5;
+              document.getElementById("r"+c).innerHTML="Reading...";
+              document.getElementById("w1").innerHTML="IDLE";
+              document.getElementById("w2").innerHTML="IDLE";
+              document.getElementById("w3").innerHTML="IDLE";
+              document.getElementById("w4").innerHTML="IDLE";
+              document.getElementById("w5").innerHTML="IDLE";
+              mutex =-1;
+            }
+            if(document.forms[0].elements[1].checked == true)
+            {
+              // document.getElementById("one").style.backgroundColor = '#DC143C';
+              // var change = document.getElementById("lock");
+              // change.innerHTML ="Writing Lock: 1"
+              var c= 1;
+              document.getElementById("w"+c).innerHTML="Writing...";
+              document.getElementById("r1").innerHTML="IDLE";
+              document.getElementById("r2").innerHTML="IDLE";
+              document.getElementById("r3").innerHTML="IDLE";
+              document.getElementById("r4").innerHTML="IDLE";
+              document.getElementById("r5").innerHTML="IDLE";
+              mutex =0;
+            }
+            if(document.forms[0].elements[3].checked == true)
+            {
+              // document.getElementById("two").style.backgroundColor = '#DC143C';
+              // var change = document.getElementById("lock");
+              // change.innerHTML ="Writing Lock: 2"
+              var c= 2;
+              document.getElementById("w"+c).innerHTML="Writing...";
+              document.getElementById("r1").innerHTML="IDLE";
+              document.getElementById("r2").innerHTML="IDLE";
+              document.getElementById("r3").innerHTML="IDLE";
+              document.getElementById("r4").innerHTML="IDLE";
+              document.getElementById("r5").innerHTML="IDLE";
+              mutex =1;
+            }
+            if(document.forms[0].elements[5].checked == true)
+            {
+              // document.getElementById("three").style.backgroundColor = '#DC143C';
+              // var change = document.getElementById("lock");
+              // change.innerHTML ="Writing Lock: 3"
+              var c= 3;
+              document.getElementById("w"+c).innerHTML="Writing...";
+              document.getElementById("r1").innerHTML="IDLE";
+              document.getElementById("r2").innerHTML="IDLE";
+              document.getElementById("r3").innerHTML="IDLE";
+              document.getElementById("r4").innerHTML="IDLE";
+              document.getElementById("r5").innerHTML="IDLE";
+              mutex =2;
+            }
+            if(document.forms[0].elements[7].checked == true)
+            {
+              // document.getElementById("four").style.backgroundColor = '#DC143C';
+              // var change = document.getElementById("lock");
+              // change.innerHTML ="Writing Lock: 4"
+              var c= 4;
+              document.getElementById("w"+c).innerHTML="Writing...";
+              document.getElementById("r1").innerHTML="IDLE";
+              document.getElementById("r2").innerHTML="IDLE";
+              document.getElementById("r3").innerHTML="IDLE";
+              document.getElementById("r4").innerHTML="IDLE";
+              document.getElementById("r5").innerHTML="IDLE";
+              mutex =3;
+            }
+            if(document.forms[0].elements[9].checked == true)
+            {
+              // document.getElementById("five").style.backgroundColor = '#DC143C';
+              // var change = document.getElementById("lock");
+              // change.innerHTML ="Writing Lock: 5"
+              var c= 5;
+              document.getElementById("w"+c).innerHTML="Writing...";
+              document.getElementById("r1").innerHTML="IDLE";
+              document.getElementById("r2").innerHTML="IDLE";
+              document.getElementById("r3").innerHTML="IDLE";
+              document.getElementById("r4").innerHTML="IDLE";
+              document.getElementById("r5").innerHTML="IDLE";
+              mutex =4;
+            }
+            console.log(mutex);
+            //alert(mutex);
+            if(mutex==-1)
+            {
+               document.getElementById("doc").disabled = true;
+            }
+            else
+            {
+                document.getElementById("doc").disabled = false;
+            }
+      }
+    </script>
+  </div>
+</body>

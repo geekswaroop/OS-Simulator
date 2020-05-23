@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Disk Scheduling</title>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="disk.js"></script>
+        <link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
+    </head>
+	<style>
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 15px;
+}
+
+.column1 {
+  float: left;
+  width: 15.5%;
+  padding: 15px;
+  margin:10px
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+	</style>
+    <body>
+            <!-- Navigation Bar -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="../Index/index.html#firstPage">Operating System Simulator</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../Index/index.html">Home</a>
+                  </li>
+                </ul>
+            </div>
+        </nav>
+            <br>
+            <div class="container-fluid">
+		<div class="row">
+		<div class="column">
+                <div class="jumbotron" style="background-color:#F6DBC1">
+                    <h1 style="color:black;" class="display-3" font color = "black"><strong>Disk Scheduling</strong></h1>
+                    <p style="color:#6E6A66;"class="lead">Disk scheduling is the method that computer operating systems use to decide in which order the block I/O operations will be submitted to storage volumes. I/O scheduling is sometimes called disk scheduling.</p>
+
+                </div>
+		</div>
+                <script>
+                function admSelectCheck(nameSelect)
+                {
+                    console.log(nameSelect);
+                    if(nameSelect){
+                        x3 = document.getElementById("o3").value;
+                        x4 = document.getElementById("o4").value;
+                        x5 = document.getElementById("o5").value;
+                        x6 = document.getElementById("o6").value;
+                        x7 = document.getElementById("o7").value;
+                        if(x3 == nameSelect.value || x4 == nameSelect.value || x5 == nameSelect.value || x6 == nameSelect.value || x7 == nameSelect.value){
+                            document.getElementById("admDivCheck").style.display = "block";
+                        }
+                        else{
+                            document.getElementById("admDivCheck").style.display = "none";
+                        }
+                    }
+                    else{
+                        document.getElementById("admDivCheck").style.display = "none";
+                    }
+                }
+                </script>
+		<div class="column">
+                <form>
+                    <fieldset>
+                        <div class="row">
+                            <div class="form-group" style="margin-left:50px; float:left;">
+				<br>
+                                <label for="exampleSelect1">Algorithm</label>
+                                  <select style="background-color:#F6DBC1" class="form-control" id="algorithm" onchange="admSelectCheck(this);">
+                                    <option id="o1" value="fcfs" >FCFS</option>
+                                    <option id="o2" value="sstf">SSTF</option>
+                                    <option id="o3" value="scan">SCAN</option>
+                                    <option id="o4" value="cscan">C-SCAN</option>
+                                    <option id="o5" value="look">LOOK</option>
+                                    <option id="o6" value="clook">C-LOOK</option>
+                                  </select>
+                            </div>
+                            <div class="form-group" style="margin-left:50px; float:left;" id="admDivCheck">
+				<br>
+                                <label for="exampleSelect1">Direction</label>
+                                  <select style="background-color:#F6DBC1" class="form-control" id="direction">
+                                    <option value="left" selected="selected">Left</option>
+                                    <option value="right">Right</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="row">
+			<br>
+			<br>
+                            <div class="form-group" style="margin-left:50px; float:left;  width: 20%">
+				<br>
+                                <label class="col-form-label" for="inputDefault">Sequence of cylinders</label>
+                                <input style="background-color:#F6DBC1" class="form-control" id="bitstream-input" name="bitstream" placeholder="Space-separated sequence" type="text" size="35">
+                            </div>
+                            <div class="form-group" style="margin-left:50px; float:left; width: 20%">
+				<br>
+                                <label class="col-form-label" for="inputDefault">Initial cylinder</label>
+                                <input style="background-color:#F6DBC1" class="form-control" id="initial-input" name="intial"  type="text" size="35">
+                            </div>
+                            <div class="form-group" style="margin-left:50px; float:left;  width: 20%">
+				<br>
+                                <label class="col-form-label" for="inputDefault">Last cylinder</label>
+                                <input style="background-color:#F6DBC1" class="form-control" id="final-input" name="final"  type="text" size="35">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+		<br>
+		<br>
+                <button type="submit" id="plot-button" class="btn btn-primary" style="margin-left: 36px" onclick="getBitStreamAndPlot(event, document.getElementById('bitstream-input').value, document.getElementById('initial-input').value, document.getElementById('final-input').value, document.getElementById('algorithm').value,document.getElementById('direction').value)">Plot</button>
+
+
+			</div>
+		</div>
+			<br>
+			<br>
+<div class="container-fluid">
+	<div class="row">
+	<div class="column1" style="background-color:#ABF3F9">
+	<h2 style="color:black">FCFS</h2>
+	<p style="color:#6E6A66">All incoming requests are placed at the end of the queue. Whatever number that is next in the queue will be the next number served. Using this algorithm doesn't provide the best results. To determine the number of head movements you would simply find the number of tracks it took to move from one request to the next. </p>
+	</div>
+	<div class="column1" style="background-color:#ABF3F9">
+	<h2 style="color:black">SSTF</h2>
+	<p style="color:#6E6A66">Shortest seek time first (SSTF) algorithm selects the disk I/O request which requires the least disk arm movement from its current position regardless of the direction. It reduces the total seek time as compared to FCFS.It allows the head to move to the closest track in the service queue.</p>
+	</div>
+<div class="column1" style="background-color:#ABF3F9">
+	<h2 style="color:black">SCAN</h2>
+	<p style="color:#6E6A66">In this algorithm, the disk arm moves into a particular direction till the end, satisfying all the requests coming in its path,and then it turns back and moves in the reverse direction satisfying requests coming in its path. Hence it's also known as elevator algorithm as the working is analogus to elevator.</p>
+	</div>
+<div class="column1" style="background-color:#ABF3F9">
+	<h2 style="color:black">C-SCAN</h2>
+	<p style="color:#6E6A66">In C-SCAN algorithm, the arm of the disk moves in a particular direction servicing requests until it reaches the last cylinder, then it jumps to the last cylinder of the opposite direction without servicing any request then it turns back and start moving in that direction servicing the remaining requests.
+</p>
+	</div>
+<div class="column1" style="background-color:#ABF3F9">
+	<h2 style="color:black">LOOK</h2>
+	<p style="color:#6E6A66">It is like SCAN algorithm to some extent except the difference that, here, the arm of the disk stops moving inwards (or outwards) when no more request in that direction exists. This algorithm tries to overcome the overhead of SCAN algorithm which forces disk arm to move in one direction till the end regardless of knowing if any request exists in the direction or not.</p>
+	</div>
+<div class="column1" style="background-color:#ABF3F9">
+	<h2 style="color:black">CLOOK</h2>
+	<p style="color:#6E6A66">C Look Algorithm is similar to C-SCAN algorithm to some extent. In this algorithm, the arm of the disk moves outwards servicing requests until it reaches the highest request cylinder, then it jumps to the lowest request cylinder without servicing any request then it again start moving outwards servicing the remaining requests.</p>
+	</div>
+	</div>
+</div>
+            <div class="container">
+				      <div id="alg_name"></div>
+                <div id="alg_seek"></div>
+			      </div>
+			      <div class="container">
+			       <div id="graph_area"></div>
+            </div>
+			<br>
+			<br>
+</div>
+    </body>
+</html>

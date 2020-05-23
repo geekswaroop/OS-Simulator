@@ -1,0 +1,35 @@
+.Readers{
+
+  left: 15%;
+}
+#read{
+
+}
+#write{
+  position: absolute;
+  left: 80%;
+  top: auto;
+}
+.Writers{
+  position: absolute;
+  left: 80%;
+}
+.statustable{
+  position: absolute;
+  top: 18%;
+  left: 40%;
+  background-color: #FF69B4;
+}
+.statusrow{
+  padding: 20px;
+  color: black;
+}
+#doc{
+  height:150px;
+  width:1250px;
+  position: absolute;
+  top:90%;
+  left:2%;
+  font-size:20px;
+  margin-bottom: 15px;
+}

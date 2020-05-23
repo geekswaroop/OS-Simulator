@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Replacement</title>
+
+
+        <link rel ="stylesheet" type="style.css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="Index/css/bootswatch.css" />
+        <script type="text/javascript" src="lru.js"></script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+          <a class="navbar-brand" href="../Index/index.html">Operating System Simulator</a>
+          <a class="navbar-brand " href="wiki.html">Wiki</a>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="background: ">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+
+        </nav>
+        <br>
+        <div class="container">
+
+                    <h1 class="display-3"><marquee>Page Replacement Algorithm</marquee></h1>
+                         <hr class="my-4">
+                    <p>The page replacement algorithm decides which memory page is to be replaced. The process of replacement is sometimes called swap out or write to disk. Page replacement is done when the requested page is not found in the main memory (page fault).</p>
+
+          <hr class="my-4">
+
+
+                       <hr class="my-4">
+
+				<div class="panel-body">
+
+            <div class="panel-footer">
+                <button style="margin-right: 16px" class="btn btn-primary btn-success" onclick="FIFO()">FIFO</button>
+                <button style="margin-right: 16px" class="btn btn-primary btn-success" onclick="LRU()">LRU</button>
+                <button style="margin-right: 16px" class="btn btn-primary btn-success" onclick="MRU()">MRU</button>
+                <button style="margin-right: 16px" class="btn btn-primary btn-success" onclick="OPR()">OPR</button>
+                <button style="margin-right: 16px" class="btn btn-primary btn-success" onclick="MFU()">MFU</button>
+                <button style="margin-right: 16px" class="btn btn-primary btn-success" onclick="SECONDchance()">SECOND CHANCE </button>
+
+            </div>
+
+       <hr class="my-4">
+
+              <form name = "Need">
+			            <div class = "form-group" style="float:left;">
+            <label>Number of Frames:</label>
+           <br>
+
+         <input type="number" id="noofFrames" >
+
+             </form>
+
+					<form name = "resource">
+                  <div class = "form-group"  float:left;>
+
+
+
+
+						<label>Number of Pages:</label><input class="form-control" type="Number" onkeyup="BuildFormFields(parseInt(this.value, 10));" />
+
+         <br>
+           <p>Enter the page sequence:</p>
+            <div id="FormFields" style=""></div>
+			            </div>
+          </form>
+
+
+
+
+					<table id="tab_need" class="table table-striped  table-hover">
+					</table>
+			        <table id="tab_alloc" class="table table-striped table-hover">
+					</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+
+	</body>
+</html>

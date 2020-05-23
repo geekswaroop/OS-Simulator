@@ -1,0 +1,167 @@
+
+.play1,.pause1 {
+	width:150px;
+	height:150px;
+	position: absolute;
+	top: 35%;
+	left: 25%;
+	border-radius: 50%;
+
+}
+
+.play2,.pause2 {
+	width:150px;
+	height:150px;
+	position: absolute;
+	top: 35%;
+	left: 58%;
+	border-radius: 50%;
+
+}
+
+
+#prod {
+	width:250px;
+	height:250px;
+	position: absolute;
+	top: 41%;
+	left: 15%;
+	margin-right: -50%;
+	border-radius: 5px;
+	transform: translate(-50%, -50%)
+}
+
+#cons {
+	width:250px;
+	height:250px;
+	position: absolute;
+	top: 41%;
+	left: 80%;
+	margin-right: -50%;
+	border-radius: 5px;
+	transform: translate(-50%, -50%)
+}
+
+
+
+#empty1 {
+	width: 120px;
+	height: 120px;
+	top: 70%;
+	left: 0.5%;
+	position: absolute;
+}
+
+#empty2 {
+	width: 120px;
+	height: 120px;
+	top: 70%;
+	left: 10.5%;
+	position: absolute;
+}
+
+#empty3 {
+	width: 120px;
+	height: 120px;
+	top: 70%;
+	left: 20.5%;
+	position: absolute;
+}
+
+#empty4 {
+	width: 120px;
+	height: 120px;
+	top: 70%;
+	left: 30.5%;
+	position: absolute;
+}
+
+#empty5 {
+	width: 120px;
+	height: 120px;
+	top: 70%;
+	left: 40.5%;
+	position: absolute;
+}
+
+#empty6 {
+	width: 120px;
+	height: 120px;
+	top: 70%;
+	left: 50.5%;
+	position: absolute;
+}
+
+#empty7{
+	width: 120px;
+	height: 120px;
+	top: 70%;
+	left: 60.5%;
+	position: absolute;
+}
+
+#empty8{
+	width: 120px;
+	height: 120px;
+	top: 70%;
+	left: 70.5%;
+	position: absolute;
+}
+#empty9{
+	width: 120px;
+	height: 120px;
+	top: 70%;
+	left: 80.5%;
+	position: absolute;
+}
+#empty10{
+	width: 120px;
+	height: 120px;
+	top: 70%;
+	left: 90.5%;
+	position: absolute;
+}
+
+#producer {
+	width: 200px;
+	height: 60px;
+	top: 10%;
+	left: 7.5%;
+	position: absolute;
+	border-radius: 7px;
+}
+
+#consumer {
+	width: 200px;
+	height: 60px;
+	top: 10%;
+	left: 73%;
+	position: absolute;
+	border-radius: 7px;
+}
+
+.display-3 {
+    font-size: 3.5rem;
+}
+
+.buffer {
+	font-size: 30px;
+    position: absolute;
+    top: 10%;
+    left: 46%;
+    transform: translate(-50%, -50%);
+	background: orange;
+	padding: 7px 7px 7px 7px;
+	border-radius: 5px;
+}
+
+#count {
+	font-size: 30px;
+    position: absolute;
+    top: 60%;
+    left: 46.3%;
+    transform: translate(-50%, -50%);
+	background: orange;
+	padding: 7px 7px 7px 7px;
+	border-radius: 5px;
+}

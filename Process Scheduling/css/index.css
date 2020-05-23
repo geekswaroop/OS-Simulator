@@ -1,0 +1,24 @@
+h1 {
+    font-size: 40px;
+}
+
+body > div > ul {
+    padding: 0;
+    margin: 0;
+}
+
+body > div > ul > li {
+    width: 100%;
+    padding: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    text-align: center;
+    border-style: solid;
+    font-family: 'Monotype Cursiva', cursive;
+}
+
+#timer{
+    width: 805px;
+    position:relative;
+    margin: auto;
+}

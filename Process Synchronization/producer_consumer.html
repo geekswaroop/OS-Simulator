@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+	  <link href="css/css_prod_cons.css" rel="stylesheet" />
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  <title>Producer Consumer Problem</title>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
+      <script type="text/javascript" src="../Index/js/scrolloverflow.js"></script>
+
+      <script type="text/javascript" src="../Index/js/jquery.fullPage.js"></script>
+      <script type="text/javascript">
+    	$(document).ready(function() {
+    		$('#fullpage').fullpage({
+    			sectionsColor: ['#00000'],
+    			anchors: ['anime'],
+    			menu: '#menu',
+    			easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)'
+    		});
+    	});
+      </script>
+</head>
+
+<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="../Index/index.html">Operating System Simulator</a>
+			<a class="navbar-brand " href="pc_wiki.html">Wiki</a>
+
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="background: ">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+
+		</nav>
+		<br>
+    <div id="fullpage">
+	
+
+	    <div class="section" id="section1">
+	    	<div class="container" id="anim">
+				<input type="image" src="includes/producer_consumer_items/PLAY.png" class="play1" onclick="toggle1(this);"/>
+				<img id="prod" src="includes/producer_consumer_items/popcornmaking-0.png" >
+				<img id="producer" src="includes/producer_consumer_items/PRODUCER.png">
+				<div class="buffer">Buffer size : 10</div>
+				<div id="count">Counter : 0</div>
+				<input type="image" src="includes/producer_consumer_items/PLAY.png" class="play2" onclick="toggle2(this);"/>
+				<img id="cons" src="includes/producer_consumer_items/popcornConsuming-0.png" >
+				<img id="consumer" src="includes/producer_consumer_items/CONSUMER.png">
+
+				<img id="empty1" src="includes/producer_consumer_items/popcornempty.png">
+				<img id="empty2" src="includes/producer_consumer_items/popcornempty.png">
+				<img id="empty3" src="includes/producer_consumer_items/popcornempty.png">
+				<img id="empty4" src="includes/producer_consumer_items/popcornempty.png">
+				<img id="empty5" src="includes/producer_consumer_items/popcornempty.png">
+				<img id="empty6" src="includes/producer_consumer_items/popcornempty.png">
+				<img id="empty7" src="includes/producer_consumer_items/popcornempty.png">
+				<img id="empty8" src="includes/producer_consumer_items/popcornempty.png">
+				<img id="empty9" src="includes/producer_consumer_items/popcornempty.png">
+				<img id="empty10" src="includes/producer_consumer_items/popcornempty.png">
+			</div>
+		</div>
+</div>
+
+</body>
+
+<script>
+
+	var start=0, end=0, count=0;
+	var flag1 = 0, flag2=0;
+	function toggle1(el){
+	if(flag1==0 && count!=10)
+	{
+		if(el.className!="pause1")
+		{
+			el.src="includes/producer_consumer_items/PAUSE.png";
+			el.className="pause1";
+			flag2 = 1;
+			document.getElementById("prod").src="includes/producer_consumer_items/popcornmaking.gif";
+			document.getElementById("producer").src="includes/producer_consumer_items/PRODUCING.png";
+			var intclear = setInterval(function(){
+				if(el.className!="play1") {
+				str="empty"+(end+1);
+				count++;
+				document.getElementById(str).src="includes/producer_consumer_items/popcorn.jpg";
+				document.getElementById("count").innerHTML = "Counter : "+count;
+				end = (end+1)%10;
+				if(count==10)
+				{
+					flag2 = 0;
+					el.src='includes/producer_consumer_items/PLAY.png';
+					el.className="play1";
+					document.getElementById("prod").src="includes/producer_consumer_items/popcornmaking-0.png";
+					document.getElementById("producer").src="includes/producer_consumer_items/PRODUCER.png";
+					clearInterval(intclear);
+					start = 0;
+					end = 0;
+				}
+				}
+			},1000);
+		}
+		else if(el.className=="pause1")
+		{
+			flag2 = 0;
+			el.src='includes/producer_consumer_items/PLAY.png';
+			el.className="play1";
+			document.getElementById("prod").src="includes/producer_consumer_items/popcornmaking-0.png";
+			document.getElementById("producer").src="includes/producer_consumer_items/PRODUCER.png";
+		}
+	}
+	else if(count==10)
+	{
+		alert("Produce limit is reached");
+	}
+	else
+	{
+		alert("Cannot produce now");
+	}
+
+    return false;
+	}
+
+	function toggle2(el) {
+	if(flag2==0)
+	{
+		if(el.className!="pause2" && count>0)
+		{
+			el.src="includes/producer_consumer_items/PAUSE.png";
+			el.className="pause2";
+			flag1 = 1;
+			document.getElementById("cons").src="includes/producer_consumer_items/popcornConsuming.gif";
+			document.getElementById("consumer").src="includes/producer_consumer_items/CONSUMING.png";
+			var intclear = setInterval(function(){
+				if(el.className!="play2") {
+				str="empty"+(start+1);
+				count--;
+				document.getElementById(str).src="includes/producer_consumer_items/popcornempty.png";
+				document.getElementById("count").innerHTML = "Counter : "+count;
+				start = (start+1)%10;
+				if(count==0)
+				{
+					flag1 = 0;
+					flag2 = 1;
+					el.src='includes/producer_consumer_items/PLAY.png';
+					el.className="play2";
+					document.getElementById("cons").src="includes/producer_consumer_items/popcornConsuming-0.png";
+					document.getElementById("consumer").src="includes/producer_consumer_items/CONSUMER.png";
+					clearInterval(intclear);
+					start = 0;
+					end = 0;
+				}
+				}
+			},1000);
+		}
+		else if(el.className=="pause2")
+		{
+			flag1 = 0;
+			el.src='includes/producer_consumer_items/PLAY.png';
+			el.className="play2";
+			document.getElementById("cons").src="includes/producer_consumer_items/popcornConsuming-0.png";
+			document.getElementById("consumer").src="includes/producer_consumer_items/CONSUMER.png";
+		}
+	}
+	else if(count==0)
+	{
+		alert("All items consumed");
+	}
+	else
+	{
+		alert("Cannot consume now!");
+	}
+
+	return false;
+	}
+
+</script>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>page replacement</title>
+
+
+
+        <link rel="stylesheet" type="text/css" href="Index/css/bootswatch.css" />
+        <script type="text/javascript" src="lru.js"></script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+          <a class="navbar-brand" href="../Index/index.html">Operating System Simulator</a>
+          <a class="navbar-brand " href="lruindex.html">Simulate</a>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+
+        </nav>
+        <br>
+        <div class="container">
+
+                    <h1 class="display-3">Page replacement Algorithm</h1>
+                         <hr class="my-4">
+                    <p>The page replacement algorithm decides which memory page is to be replaced. The process of replacement is sometimes called swap out or write to disk. Page replacement is done when the requested page is not found in the main memory (page fault).</p>
+
+                    <p>When a page fault occurs, the operating system has to choose a page to remove from memory to make room for the page that
+                          has to be brought in. The page replacement is done by swapping the required pages from backup storage to main memory
+                           and vice-versa. If the page to be removed has been modified while in memory, it must be rewritten to the disk to
+                            bring the disk copy up to date. If, however, the page has not been changed (e.g., it contains program text),
+                            the disk copy is already up to date, so no rewrite is needed. The page to be read in just overwrites the page
+                             being evicted. A page replacement algorithm is evaluated by running the particular algorithm on a string of
+                             memory references and compute the page faults.Referenced string is a sequence of pages being referenced.
+                              Page fault is not an error. Contrary to what their name might suggest, page faults are not errors and
+                              are common and necessary to increase the amount of memory available to programs in any operating
+                              system that utilizes virtual memory, including Microsoft Windows, Mac OS X, Linux and Unix.</p>
+
+                              <p>Each operating system uses different page replacement algorithms. To select the particular algorithm,
+                                    the algorithm with lowest page fault rate is considered. <br>
+                                    1.First-In, First-Out page replacement  <br>
+                                    2.Least recently used page replacement  <br>
+                                    3.Least recently used page replacement  <br>
+                                    4.Optimal page replacement algorithm   <br>
+                                    5.most frequently used  <br>
+                                    6.Second chance page replacement(Clock page replacement)  <br>
+                                    7.4.Second chance page replacement(Clock page replacement)  <br>
+                                 </p>
+
+          <hr class="my-4">
+
+
+                       <hr class="my-4">
+
+
+
+                        <h2 class="dispThelay-3">First come first serve</h2>
+                             <hr class="my-4">
+                       <p>With the FIFO algorithm, the OS maintains a queue to keep track of all the pages in memory, with the most recent
+                            arrival at the back (tail of the queue), and the oldest arrival in front (head of the queue). When the system
+                            needs space, a page will be replaced. With FIFO, the page at the front of the queue (the oldest page) is selected
+                             for replacement. However, FIFO is know to suffer from a problem known as Belady's anomaly which occurs when
+                             increasing the number of page frames results in an increase in the number of page faults for a given memory
+                             access pattern. <br>
+                             <h5>Belady’s anomaly – Belady’s anomaly proves that it is possible to have more page faults when increasing
+                                  the number of page frames while using the First in First Out (FIFO) page replacement algorithm. <br>
+                                   For example, if we consider reference string 3, 2, 1, 0, 3, 2, 4, 3, 2, 1, 0, 4 and 3 slots,
+                                    we get 9 total page faults, but if we increase slots to 4, we get 10 page faults.</h5> <br>
+                              Example</p>
+                              <img src="fifoimage.png" alt="Italian Trulli">
+              <hr class="my-4">
+
+
+
+                <h2 class="dispThelay-3">Least recently used</h2>
+                     <hr class="my-4">
+              <p>In the Least Recently Used (LRU) page replacement policy, the page that is used least recently will be replaced. </p>
+                 <p> Example :  <br> red arrow show miss,blue arraw show hit</p>
+              <img src="lruimage.png" alt="Italian Trulli">
+      <hr class="my-4">
+
+      <hr class="my-4">
+
+
+      <h2 class="dispThelay-3">Most recently used</h2>
+      <hr class="my-4">
+      <p>In the most Recently Used (LRU) page replacement policy, the page that is used most recently will be replaced. </p>
+
+      <p> Example: let  reference string:7 0 1 2 0 3 0 4 2 3 </p>
+ <img src="mru_image.png" alt="Italian Trulli">
+
+
+ <hr class="my-4">
+      <h2 class="dispThelay-3">optimal page replacement</h2>
+         <br>
+      <p> The algorithm has lowest page fault rate of all algorithm.  <br>
+            ->Often called Balady's Min Basic idea: Replace the page that will not be referenced for the longest time.  <br> <br>
+
+           • This algorithm replaces the page that will not be referred by the CPU in future for the longest time.  <br>
+           • It is practically impossible to implement this algorithm. <br>
+           •This is because the pages that will not be used in future for the longest time can not be predicted. <br>
+           •However, it is the best known algorithm and gives the least number of page faults.  <br>
+           •Hence, it is used as a performance measure criterion for other algorithms.  <br>
+
+
+</p>
+
+              <p>        Example</p>
+          <img src="opr_image.png" alt="Italian Trulli">
+      <hr class="my-4">
+
+      <hr class="my-4">
+
+
+
+      <h2 class="dispThelay-3">Most Frequency (MFU) Used Page Replacement Algorithm</h2>
+           <hr class="my-4">
+
+     <p> Actually MFU algorithm thinks that the page which was used most frequently will not be needed immediately so it
+          will replace the MFU page</p>
+          <br><br>
+          <p> Example: let  reference string:7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1</p>
+          <img src="mfuimage.jpg" alt="Italian Trulli">
+
+</p>
+
+      <h2 class="ddispThelay-3">The second chance algorithm(Clock algorithm)</h2>
+           <hr class="my-4">
+      <p>Clock algorithm. The second chance algorithm is an approximation ofLRU based on using one use bit for each page. When a page is used
+        its use bit is set to 1. We also use a pointer to the next victim which is initialized to the first page/frame. When a page is loaded,
+         it is set to point to the next frame. The list of pages is considered as a circular queue. When a page is considered for replacement,
+          if the use bit for the next victim page is examined. If it is zero [that page is replaced] otherwise [the use bit is set to zero,
+           the next victim pointer is advanced, and the process repeated until a page is found with a zero use bit].
+          <br> <br> Consider the reference string shown along the top of the following graphical structure. The system has four frames.
+           Use the clock algorithm described in the previous paragraph.
+           The narrow boxes to the right of the page number boxes can be used to keep up with use bits.
+            Use the space between the page number boxes to show the next victim pointer.
+             The initial one is shown, Place the page number in the proper frame.
+             Mark when page faults occur in the bottom line of boxes. State how many page faults occur</p>
+             <br><p> Example</p>
+             <img src="secondchance_image.png" alt="Italian Trulli">
+             <hr class="my-4">
+
+
+
+             <h2 class="dispThelay-3">Enhanced Second-Chance Algorithm</h2>
+                  <hr class="my-4">
+            <p>
+           Enhanced Second-Chance Algorithm. The enhanced second chance algorithm uses one use bit and a modify bit for each page—many
+           variations of this are possible. When a page is used its use bit is set to 1. We also use a pointer to the next victim
+           which is initialized to the first page/frame. When a page is loaded, the next victim pointer will be set to the next
+           frame after the one just loaded. The list of pages is considered as a circular queue. When a page is considered for replacement,
+            the bit pairs for each page are considered  <br>
+            ( ref,mod):    <br> <br>
+
+         1.  (0,0 ) neither recently used nor modified, best!  <br>
+         2.  (0,1 ) modified but not recently used, will need to be written.  <br>
+         3.  (1,0 ) recently used but clean—likely to be used again.  <br>
+         4.  (1,1 ) both—likely to be used again and will need to be written.    <br>  <br>
+        There are three loops through the circular buffer containing these bits that may be used. They are:   <br>
+        (a) Cycle through the buffer looking for (0,0). If one is found, use that page. <br>
+        (b) Cycle through the buffer looking for (0,1). Set the use bit to zero for all frames bypassed. <br>
+        (c) If step 2 failed, all use bits will now be zero and repetition of steps 1 and 2 are guaranteed to find a frame for replacement.
+            </p>
+            <br><p> Example:refernce string -> 0 1 3 6 2 4 5 2 5 0 3 1 2 5 4 1 0</p>
+            <img src="second2_image.png" alt="Italian Trulli">
+   <hr class="my-4">
+
+
+
+
+
+	</body>
+</html>

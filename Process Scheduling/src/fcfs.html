@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Process Scheduling</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../Index/css/bootswatch.css" />
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <script type="text/javascript" src="../js/index.js"></script>
+    </head>
+    <body>
+
+        <br>
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="display-3" style="color:purple"><b>FCFS Scheduling</b></h1>
+	<p style="color:orange">A FCFS acts like any normal queue whether, it is a line in a cinema, a checkout line in a store, or a queue for a ticket booth. The first person or process to arrive (First In) is the first one to be dealt with (First Out). If one person goes through the line and then decides they forgot something then they have to go back through.</p>
+                <br>
+				<div id="showinput"></div>
+				<hr>
+                <div class="row">
+                    <div class="form-group" style="margin-left:50px; float:left;  width: 100%">
+                        <label style="color:blue" class="col-form-label" for="inputDefault">Enter arrival time:</label>
+                        <input class="form-control" id="newat" name="at" placeholder="Arrival Time" type="text" size="35">
+                    </div>
+                    <div class="form-group" style="margin-left:50px; float:left;  width: 100%">
+                        <label style="color:blue" class="col-form-label" for="inputDefault">Enter burst time:</label>
+                        <input class="form-control" id="newbt" name="bt" placeholder="Burst Time" type="text" size="35">
+                    </div>
+                </div>
+                <!-- <div id="inputsection" class="card">
+                    <div style="width: 300px; float:left;text-align:left; margin-left: 20px;">
+                        Arrival Time:
+                        <input style="width:50px;" id="newat" class="form-control" type="text" value=""></input>
+                    </div>
+                    <div style="width: 300px;float:left;text-align:left;">
+                        Burst Time:
+                        <input style="width:50px;" id="newbt" class="form-control" type="text" value=""></input>
+                    </div>
+                    <button class="btn btn-success" onclick="addToList()" style="float:left;margin-left:10px;">Add</button>
+                </div> -->
+                <button type="submit" class="btn btn-primary" style="margin-left: 36px" onclick="addToList()">Add</button>
+
+
+                <button type="submit" class="btn btn-primary" style="margin-left: 36px; float: right;" onclick="showOutput(0)">Schedule</button>
+            </div>
+                <!-- <div>
+                    <button class="btn btn-success" onclick="clearData()" style="float:right; margin-right: 50px;">Clear Data</button>
+                    <button class="btn btn-success" onclick="showOutput(0)" style="float:right; margin-right: 50px;">Schedule</button>
+                </div> -->
+
+            <!-- Gantt Chart -->
+            <div style="margin-top: 150px;">
+
+
+            </div>
+			<!-- CPU Operations -->
+
+			<!-- Table -->
+            <div style="margin-top: 50px;">
+                <h2 id="table-heading" style="text-align:center;"></h2>
+                <div>
+                    <table id="tab" class="table table-striped centered responsive-table" style="border-color: black; border-width: 2px; align: center; bgcolor: white; cellspacing: 10px;">
+                        <thead id="thead">
+                        </thead>
+                        <tbody id="ptable">
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 100px;">
+                    <h3 id="operations-heading" style="text-align:center;"></h3>
+                    <div id="operations"></div>
+                </div>
+                <h2 id ="chart-header" style="text-align:center;"></h2>
+                <br />
+                <div id="gantt"></div>
+                <div id="timer"></div>
+                <br /><br />
+                <div>
+                    <div style="width: 50%; text-align:center;float:left; font-size: 20px;" id="awt1">
+                    </div>
+                    <div style="width:50%; text-align:center;float:left;font-size:20px;" id="atat1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

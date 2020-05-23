@@ -1,0 +1,132 @@
+#graph-area {
+    margin: auto;
+    height: 650px;
+    width: 1200px;
+    padding: 0;
+    border: 1px solid black;
+}
+
+#header {
+    text-align: center;
+    font-size: 40px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+#alg-name {
+    font-size: 25px;
+    text-align: left;
+    font-family: Monospace;
+    font-weight: bold;
+}
+#alg-seek {
+    font-size: 20px;
+    text-align: left;
+}
+
+    input{
+         width: 10%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: #FFFFFF;
+    color: black;
+
+    }
+.s_hide{
+        display: none;
+    }
+    .s_show{
+        display: block;
+    }
+        .button1 {
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 0;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
+    .button1:hover {
+    background-color: #FD6A02;
+    color: white;
+}
+.button2 {
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 0;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
+.button2:hover{
+    background-color: #FD6A02;
+    color: white;
+}
+  .a1{
+        
+        border: none;
+         margin: 8px 0;
+        border:solid 2px white;
+        background-color: yellow;
+          text-align: center;
+        font-weight: bold;
+        font-size: 16px;
+
+    }
+    .anchor,.anchor1{
+         background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 0;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+        
+    }   
+    .style1{
+        background-color:red;
+        color:white;
+    }
+    
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  color: black;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+#more {display: none;}
+
+
+
+    /*style="color: white; background: black;*/

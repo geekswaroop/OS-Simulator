@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>  SJF Scheduling </title>
+
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../Index/css/bootswatch.css" />
+    <link rel="stylesheet" type="text/css" href="../css/index.css"></link>
+    <script type="text/javascript" src="../js/index.js"></script>
+<link href="css/resume.min.css" rel="stylesheet">
+
+</head>
+<body >
+
+    <br>
+	<div class="container">
+		<!-- Input section -->
+		<div class="jumbotron">
+            <h1 class="display-3" style="color:purple"><b>SJF Scheduling</b></h1>
+		<p style="color:orange">It is a scheduling policy that selects for execution the waiting process with the smallest execution time.Shortest job next is advantageous because of its simplicity and because it minimizes the average amount of time each process has to wait until its execution is complete. However, it has the potential for process starvation for processes which will require a long time to complete if short processes are continually added.</p>
+            <br>
+			<div id="showinput"></div>
+			<hr>
+			<div class="row">
+				<div class="form-group" style="margin-left:50px;float:left;  width: 100%">
+                    <label style="color:blue" class="col-form-label" for="inputDefault" >Arrival time:</label>
+                    <input class="form-control" id="newat" name="at" placeholder="Arrival Time" type="text" size="35">
+                </div>
+				<div class="form-group" style="margin-left:50px; float:left;  width: 100%">
+					<label style="color:blue" class="col-form-label" for="inputDefault">Burst time:</label>
+					<input class="form-control" id="newbt" name="bt" placeholder="Burst Time" type="text" size="35">
+				</div>
+			</div>
+            <button type="submit" id="add" class="btn btn-primary" style="margin-left: 36px" onclick="addToList()">Add</button>
+
+
+			<button type="submit" class="btn btn-primary" style="margin-left: 36px; float: right;" onclick="showOutput(1)">Schedule</button>
+		</div>
+		<!-- Gantt Chart -->
+		<div style="margin-top: 150px;">
+			
+        </div>
+		<br>
+		<!-- CPU Operations -->
+
+		<!-- Table -->
+		<div style="margin-top: 50px;">
+			<h2 id="table-heading" style="text-align:center;"></h2>
+			<div>
+				<table id="tab" class="table table-striped centered responsive-table" style="border-color: black; border-width: 2px; align: center; bgcolor: white; cellspacing: 10px;">
+					<thead id="thead"></thead>
+					<tbody id="ptable"></tbody>
+				</table>
+			</div>
+      <div style="margin-top: 100px;">
+  			<h3 id="operations-heading" style="text-align:center;"> </h3>
+  			<div id="operations"></div>
+  		</div>
+      <h2 id ="chart-header" style="text-align:center;"></h2>
+			<br />
+			<div id="gantt"></div>
+			<div id="timer"></div>
+			<br /><br />
+			<div>
+				<div style="width: 50%; text-align:center;float:left; font-size: 20px;" id="awt1"></div>
+				<div style="width: 50%; text-align:center;float:left; font-size: 20px;" id="atat1"></div>
+            </div>
+		</div>
+    </div>
+</body>
+</html>

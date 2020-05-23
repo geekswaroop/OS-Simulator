@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="css/dining.css" rel="stylesheet" />
+	<script type="text/javascript" src="../Index/js/scrolloverflow.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../Index/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
+   	<script type="text/javascript" src="../Index/js/jquery.fullPage.js"></script>
+    <!-- <script type="text/javascript">
+    	$(document).ready(function() {
+    		$('#fullpage').fullpage({
+    			sectionsColor: ['#00000'],
+    			anchors: ['anime'],
+    			menu: '#menu',
+    			easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)'
+    		});
+    	});
+      </script> -->
+</head>
+<body>
+    <div id="fullpage">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="../Index/index.html">Operating System Simulator</a>
+          <a class="navbar-brand " href="dining_wiki.html">Wiki</a>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+
+        </nav>
+		<div class="section" >
+			<div class="container" id="anim">
+				<!-- <img id="table" src="includes/dining_items/table.jpg" >
+				<img id="food" src="includes/dining_items/noodles.jpg" > -->
+
+				<button type="button" class="next btn btn-success btn-lg" onclick="simulate()">Next</button>
+				<!-- <button type="button" class="next" onclick="simulate()">Next</button> -->
+
+				<div>
+					<img id="phil1" src="includes/dining_items/thinking.gif" >
+					<img id="phil2" src="includes/dining_items/thinking.gif" >
+					<img id="phil3" src="includes/dining_items/thinking.gif" >
+					<img id="phil4" src="includes/dining_items/thinking.gif" >
+					<img id="phil5" src="includes/dining_items/thinking.gif" >
+				</div>
+
+				<!-- <div id="c4"></div>
+				<div id="c0"></div>
+				<div id="c1"></div>
+				<div id="c2"></div>
+				<div id="c3"></div> -->
+
+				<!-- <img id="think" src="includes/dining_items/thinking.jpg" align="right"><div id="thinkt">Thinking</div>
+				<img id="hungry" src="includes/dining_items/hungry.jpg" align="right"><div id="hungryt">Hungry</div>
+				<img id="eating" src="includes/dining_items/eating.jpg" align="right"><div id="eatingt">Eating</div> -->
+
+				<div id="p1"> <font color="black">Philosopher 1</font></div>
+				<div id="p2"><font color="black">Philosopher 2</font></div>
+				<div id="p3"><font color="black">Philosopher 3</font></div>
+				<div id="p4"><font color="black">Philosopher 4</font></div>
+				<div id="p5"><font color="black">Philosopher 5</font></div>
+
+				<div id="random"><font color="black">Random number generated : 0</font></div>
+
+				<p id="ph1">Thinking</p>
+				<p id="ph2">Thinking</p>
+				<p id="ph3">Thinking</p>
+				<p id="ph4">Thinking</p>
+				<p id="ph5">Thinking</p>
+			</div>
+		</div>
+			<div class="container">
+				<table class="table-striped" id="chopsticktable">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="chopstickrow"><font color="black">Spoon</font></th>
+      <th scope="col" class="chopstickrow" ><font color="black">Status</font></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" class="chopstickrow"><font color="black">Spoon1</font></th>
+      <td class="chopstickrow" id ="sp1">Unlocked</td>
+    </tr>
+    <tr>
+			<th scope="row" class="chopstickrow"><font color="black">Spoon2</font></th>
+      <td class="chopstickrow" id ="sp2">Unlocked</td>
+    </tr>
+    <tr>
+			<th scope="row" class="chopstickrow"><font color="black">Spoon3</font></th>
+      <td class="chopstickrow" id ="sp3">Unlocked</td>
+    </tr>
+		<tr>
+			<th scope="row" class="chopstickrow"><font color="black">Spoon4</font></th>
+      <td class="chopstickrow" id ="sp4">Unlocked</td>
+    </tr>
+		<tr>
+			<th scope="row" class="chopstickrow"><font color="black">Spoon5</font></th>
+			<td class="chopstickrow" id ="sp0">Unlocked</td>
+		</tr>
+  </tbody>
+</table>
+</div>
+
+	<script>
+		var phil = [0,0,0,0,0], chopsticks = [0,0,0,0,0];
+		function simulate()
+		{
+			var n = Math.floor((Math.random() * 5) + 1);
+			document.getElementById("random").innerHTML = "Random number generated : "+n;
+			if(phil[n-1]==0)
+			{
+				phil[n-1] = 1;
+				document.getElementById("phil"+n).src = "includes/dining_items/hungry.jpg";
+				document.getElementById("ph"+n).innerHTML = "Hungry";
+			}
+			else if(phil[n-1]==1)
+			{
+				if(chopsticks[n-1]==0 && chopsticks[n%5]==0)
+				{
+					chopsticks[n-1]=1;
+					chopsticks[n%5]=1;
+					phil[n-1] = 2;
+					document.getElementById("phil"+n).src = "includes/dining_items/eating.gif";
+					// document.getElementById("c"+(n+1)%5).style.display = "none";
+					// document.getElementById("c"+(n)%5).style.display = "none";
+					document.getElementById("ph"+n).innerHTML = "Eating";
+					document.getElementById("sp"+(n+1)%5).innerHTML = "Locked";
+					document.getElementById("sp"+(n)%5).innerHTML = "Locked";
+				}
+				else
+				{
+					alert("Philosopher " + n + " cannot eat now!");
+				}
+			}
+			else if(phil[n-1]==2)
+			{
+					chopsticks[n-1]=0;
+					chopsticks[n%5]=0;
+					phil[n-1] = 0;
+					document.getElementById("phil"+n).src = "includes/dining_items/thinking.gif";
+					// document.getElementById("c"+n%5).style.display = "block";
+					// document.getElementById("c"+(n+1)%5).style.display = "block";
+					document.getElementById("ph"+n).innerHTML = "Thinking";
+					document.getElementById("sp"+n%5).innerHTML = "Unlocked";
+					document.getElementById("sp"+(n+1)%5).innerHTML = "Unlocked";
+			}
+		}
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Producer Consumer</title>
+
+
+
+        <link rel="stylesheet" type="text/css" href="css/bootswatch.css" />
+        <script type="text/javascript" src="lru.js"></script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="../Index/index.html">Operating System Simulator</a>
+          <a class="navbar-brand " href="producer_consumer.html">Simulation</a>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+
+        </nav>
+        <br>
+        <div class="container">
+
+                    <h1 class="display-3">Producer Consumer Problem</h1>
+                         <hr class="my-4">
+                    <p>Producer consumer problem is also known as bounded buffer problem. In this problem we have two processes, producer and consumer, who share a fixed size buffer. Producer work is to produce data or items and put in buffer. Consumer work is to remove data from buffer and consume it. We have to make sure that producer do not produce data when buffer is full and consumer do not remove data when buffer is empty.</p>
+                              <p>The producer should go to sleep when buffer is full. Next time when consumer removes data it notifies the producer and producer starts producing data again. The consumer should go to sleep when buffer is empty. Next time when producer add data it notifies the consumer and consumer starts consuming data. This solution can be achieved using semaphores.</p>
+
+          <hr class="my-4">
+
+
+                       <hr class="my-4">
+
+              <img src="includes/producer_consumer_items/algo.png" alt="ALGORITHM">
+              <<img src="includes/producer_consumer_items/pc.png" alt="Producer">
+              <br><br><br><br><br>
+	</body>
+</html>
