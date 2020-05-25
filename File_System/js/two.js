@@ -1,12 +1,13 @@
-var clipboard = []                // To store files to clipboard to copy or move them 
+var clipboard = []                // To store files to clipboard to copy or move them
 var pre = "root@"            // Beginning of each terminal line
-var current_path = ""            // Current location of user     
+var current_path = ""            // Current location of user
 var pointer = -1                   // pointer points to the index of the current directory
                                    //pointer = -1 corresponds to root directory
 var file_dir = []                 // List of files and directories
-var commands = ["create","vi","rm","truncate","ls","rename","properties","command_list","signout"]
+var commands = ["create","vi","rm","truncate","ls","rename","properties","command_list","signout"]   //List of predefined commands
 var passwords = ['abc','def','ghi','jkl']           // Passwords of all users
 /*
+------------COMMANDS AVAILABLE-------------
 create : For creating a file
 mkdir : Creating a directory
 rmdir : Deleting a directory
@@ -23,7 +24,7 @@ var contents
 var divide
 var lslabel
 var index
-var ufd                       // Contains the index of the current user file directory 
+var ufd                       // Contains the index of the current user file directory
 var userin
 
 userdir('user_1')
@@ -31,9 +32,10 @@ userdir('user_2')
 userdir('user_3')
 userdir('user_4')
 
- 
-signup()
 
+signup()   //Intializing the terminal UI
+
+//Function to initialize the terminal UI and log in
 function signup()
 {
  var div = document.getElementById('divx')
@@ -54,7 +56,7 @@ function signup()
  userin = document.createElement('input')
  userin.setAttribute("class","textbox")
  userin.setAttribute("type","text")
- userin.setAttribute("onkeydown","signupresponse(event,userin.value)") 
+ userin.setAttribute("onkeydown","signupresponse(event,userin.value)")      //Detect every key pressed from terminal and send to signupresponse() function
  div.appendChild(label1)
  div.appendChild(br1)
  div.appendChild(label2)
@@ -69,59 +71,61 @@ function signup()
  div.appendChild(userin)
  div.appendChild(br6)
  userin.focus()
-} 
+}
 
+//Function to sign in respective user from terminal
 function signupresponse(event,userinput)
 {
  var x = event.keyCode
- if(x == 13)
+ if(x == 13)                      // On ENTER key press (Keycode of ENTER is 13)
  {
-	 var userin_split = userinput.split(" ")
-	 switch(userin_split[0])
+	 var userin_split = userinput.split(" ")        //Tokenize command
+	 switch(userin_split[0])    //Checking password for respective users
 	 {
-	  case '1':if(userin_split[1] == passwords[0])  
+	  case '1':if(userin_split[1] == passwords[0])
 	  	 {
 	  	  current_path = 'user_1/'
 	  	  ufd = 0
 	  	  pointer = 0
 	  	  start()
-	  	 }	
+	  	 }
 	  	 break
-	  case '2':if(userin_split[1] == passwords[1])  
+	  case '2':if(userin_split[1] == passwords[1])
 	  	 {
 	  	  current_path = 'user_2/'
 	  	  ufd = 1
 	  	  pointer = 1
 	  	  start()
-	  	 }	
-	  	 break 
-	  case '3':if(userin_split[1] == passwords[2])  
+	  	 }
+	  	 break
+	  case '3':if(userin_split[1] == passwords[2])
 	  	 {
 	  	  current_path = 'user_3/'
 	  	  ufd = 2
 	  	  pointer = 2
 	  	  start()
-	  	 }	
-	  	 break 
-	  case '4':if(userin_split[1] == passwords[3])  
+	  	 }
+	  	 break
+	  case '4':if(userin_split[1] == passwords[3])
 	  	 {
 	  	  current_path = 'user_4/'
 	  	  ufd = 3
 	  	  pointer = 3
 	  	  start()
-	  	 }	
+	  	 }
 	  	 break
 	  default:signup()
 	 }
  }
 }
 
+//Function to signout as user
 function signout()
 {
- signup()
-}  
- 
- 
+ signup()   //Returning to sign in state
+}
+
+//Function to run the terminal UI after signing in
 function start()
 {
  var div = document.getElementById('divx')
@@ -130,42 +134,42 @@ function start()
  textbox = document.createElement('input')
  textbox.setAttribute("class","textbox")
  textbox.setAttribute("type","text")
- textbox.setAttribute("onkeydown","nextline(event,textbox.value)")
+ textbox.setAttribute("onkeydown","nextline(event,textbox.value)")      //Detect every key pressed from terminal and send to nextline() function
  div.appendChild(label)
  div.appendChild(textbox)
  div.appendChild(br)
  textbox.focus()
 }
 
-
+//Function to run the commands from terminal UI
 function nextline(event,text)
 {
  var x = event.keyCode;
- if(x == 13)
+ if(x == 13)                      // On ENTER key press (Keycode of ENTER is 13)
  {
-  divide = text.split(" ")
+  divide = text.split(" ")        //Tokenize the command
   user_com = divide[0]
-  for(i=0;i<commands.length;i++)
+  for(i=0;i<commands.length;i++)    //Detecting the command (Which command it is)
   {
    if(user_com == commands[i])
    {
     break
    }
   }
-  if(i < commands.length)
+  if(i < commands.length)         //Checking if command is predefined ie., is among the predefined list
   {
-   switch(i)
+   switch(i)                      //Running the command
    {
     case 0:create(divide[1])
-	   break    
+	   break
     case 1:vi(divide[1])
-    	   break	
+    	   break
     case 2:rm(divide[1])
     	   break
     case 3:truncate(divide[1])
-    	   break 
+    	   break
     case 4:ls()
-    	   break 
+    	   break
     case 5:rename(divide[1],divide[2])
     	    break
     case 6:properties(divide[1])
@@ -173,7 +177,7 @@ function nextline(event,text)
     case 7:command_list()
     	    break
     case 8:signout(divide[1])
-            break 
+            break
    }
   }
  }
@@ -188,52 +192,56 @@ Each entry is a list
 4. Size : Length of content of file
 5. Protection : User, Group, Other
 6. Location : Location of file
-7. Content : String 
+7. Content : String
 */
 
-function create(file)          // Working
+//Function to create a text file. Syntax: create <filename>
+function create(file)
 {
- for(i=0;i<file_dir.length;i++)
+ for(i=0;i<file_dir.length;i++)                                     //Traversing through all files to check if filename already exists
  {
-  if(file_dir[i][0] == file && file_dir[i][2] == pointer)           // Second condition verifies whether elements of current directory are checked 
-  {								    // or not	
+  if(file_dir[i][0] == file && file_dir[i][2] == pointer)           // Second condition verifies whether elements of current directory are checked
+  {								    // or not
    alert("File already exists")
    start()
    return
   }
  }
- file_dir.push([file,0,pointer,0,666,current_path,""])
+ file_dir.push([file,0,pointer,0,666,current_path,""])       //Creating empty file
  start()
 }
 
-function userdir(dir)          // Working 
+//Function to create a new folder/directory in the current directory for different users
+function userdir(dir)
 {
- file_dir.push([dir,1,pointer,0,666,current_path,""])
+ file_dir.push([dir,1,pointer,0,666,current_path,""])       //Creating empty directory
 }
 
-function ls()                // Working
+//Function to list all content in the directory ie., system
+function ls()
 {
  var div = document.getElementById('divx')
- for(i=0;i<file_dir.length;i++)
+ for(i=0;i<file_dir.length;i++)          //Getting names of all files present
  {
   if(file_dir[i][2] == pointer)
   {
-   var label = document.createTextNode(String(file_dir[i][0]) + " ")
+   var label = document.createTextNode(String(file_dir[i][0]) + " ")   //Getting filename
    div.appendChild(label)
   }
- } 
+ }
  var br = document.createElement("br")
- div.appendChild(br) 
+ div.appendChild(br)
  start()
 }
 
-function rm(file)            // Working    
+//Function to delete a file. Syntax: rm <filename>
+function rm(file)
 {
  for(i=0;i<file_dir.length;i++)
  {
-  if(file_dir[i][0] == file && file_dir[i][2] == pointer && file_dir[i][1] == 0)           
-  {								    			 
-   file_dir.splice(i,1)
+  if(file_dir[i][0] == file && file_dir[i][2] == pointer && file_dir[i][1] == 0)  //3rd Check is to confirm this is a file, not a folder
+  {
+   file_dir.splice(i,1)     //Removing file
    start()
    return
   }
@@ -246,29 +254,30 @@ function rm(file)            // Working
  start()
 }
 
-function vi(file)                                       // Working
+//Function to edit a text file. Syntax: vi <filename>
+function vi(file)
 {
  div = document.getElementById('divx')
  var flag = 0
  for(i=0;i<file_dir.length;i++)
  {
-  if(file_dir[i][0] == file && file_dir[i][2] == pointer && file_dir[i][1] == 0)           
-  {		
+  if(file_dir[i][0] == file && file_dir[i][2] == pointer && file_dir[i][1] == 0)
+  {
    flag = 1                                              // File is found
    var br = document.createElement("br")
    var br1 = document.createElement("br")
-   var prompt = document.createTextNode("Press Ctrl to Save and Exit")					    			 	
-   contents = document.createElement('TextArea')
+   var prompt = document.createTextNode("Press Ctrl to Save and Exit")
+   contents = document.createElement('TextArea')         // Create/display textbox to edit/add content to the file
    contents.setAttribute("rows","15")
    contents.setAttribute("cols","135")
    index = i
-   contents.setAttribute("onkeydown","savefile(event,contents.value,index,contents)")
+   contents.setAttribute("onkeydown","savefile(event,contents.value,index,contents)") //Add attribute to DOM to send data on each key press
    contents.value = file_dir[i][6]                      // Contents of file are copied to the textbox
    div.appendChild(prompt)
    div.appendChild(br)
    div.appendChild(contents)
-   div.appendChild(br1)  
-   contents.focus() 
+   div.appendChild(br1)
+   contents.focus()
   }
  }
  if(flag == 0)
@@ -281,29 +290,29 @@ function vi(file)                                       // Working
  }
 }
 
-function savefile(event,text,index,contents)                   // Save contents of file    // Working
+//Function to save contents of a file
+function savefile(event,text,index,contents)
 {
  var x = event.keyCode
- if(x == 17)
+ if(x == 17)    //Check if CTRL key is pressed
  {
   file_dir[index][6] = text
   file_dir[index][3] = String(text.length)
   alert("File saved")
-  contents.setAttribute("disabled",true)
+  contents.setAttribute("disabled",true)    //Disable textbox
   start()
  }
-} 
+}
 
-
-
+//Function to truncate a file. Syntax: truncate <filename>
 function truncate(file)
 {
  for(i=0;i<file_dir.length;i++)
  {
-  if(file_dir[i][0] == file && file_dir[i][2] == pointer && file_dir[i][1] == 0)           
-  {								    			 
-   file_dir[i][6] = ""
-   file_dir[i][3] = "0"
+  if(file_dir[i][0] == file && file_dir[i][2] == pointer && file_dir[i][1] == 0)
+  {
+   file_dir[i][6] = ""  //Set content empty
+   file_dir[i][3] = "0" //Set file size to 0
    start()
    return
   }
@@ -316,15 +325,16 @@ function truncate(file)
  start()
 }
 
-function properties(file)                      
+//Function to display file properties. Syntax: properties <filename>
+function properties(file)
 {
  for(i=0;i<file_dir.length;i++)
  {
-  if(file_dir[i][0] == file && file_dir[i][2] == pointer && file_dir[i][1] == 0)           
-  {	
+  if(file_dir[i][0] == file && file_dir[i][2] == pointer && file_dir[i][1] == 0)    //  For files
+  {
    var div = document.getElementById('divx')
    var l1 = document.createTextNode("Name : " + file_dir[i][0])
-   var br1 = document.createElement("br")   
+   var br1 = document.createElement("br")
    var l2 = document.createTextNode("Type : text")
    var br2 = document.createElement("br")
    var l3 = document.createTextNode("Size : " + file_dir[i][3])
@@ -351,7 +361,8 @@ function properties(file)
  start()
 }
 
-function command_list()                       
+//Function to display available commands list
+function command_list()
 {
  var div = document.getElementById("divx")
  var l1 = document.createTextNode("create	")
