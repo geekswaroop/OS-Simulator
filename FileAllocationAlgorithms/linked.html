@@ -6,7 +6,7 @@
  <link rel="stylesheet" href="stylesfile.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-         <link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
+         <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
 	<!-- <style>
 	.s_hide{
 		display: none;
@@ -43,16 +43,16 @@
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-		
+
 	}
-	
+
 
 	.style1{
 		background-color:red;
 		color:white;
 	}
 
-  
+
   	.button1 {
     background-color: black; /* Green */
     border: none;
@@ -74,9 +74,9 @@
     background-color: #3CBC8D;
     color: white;
 }
-  
+
 	.a1{
-		
+
 		border: none;
 		 margin: 8px 0;
 		border:solid 2px white;
@@ -92,276 +92,271 @@
 <body onload="initialise()">
 
 	 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	 	<img src = "home.png" width="25" height="25" >
-            <a class="navbar-brand" href="../Index/index.html#firstPage">Operating System Simulator</a>
+            <a class="navbar-brand" href="../Index/index.html#filealloc">Home</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
                 <span class="navbar-toggler-icon"></span>
-              </button>     
-
-               <div class="dropdown">
-                <span style="margin-left: 900px; font-size: 20px ;"><a href="https://github.com/rounak06/pdffile/blob/master/wikifile.pdf" style="color: white;">Wiki</a></span>
-                <div class="dropdown-content" style="position: relative;">
-                <p>The allocation method defines how the files are stored in the disk blocks. The direct access nature of the disks gives us the flexibility to implement the files. In many cases, different files or many files are stored on the same disk. The main problem that occurs in the<span id="dots">...</span><span id="more"></p>
-                   
-                 </div>
-                </div>
+              </button>
           </nav>
+	<div class="container">
+	</br>
+		<div class="jumbotron">
+		<h1>Linked Scheduling</h1>
+	<p > Enter the number of files </p>
+		<input id="nof" type="number">
 
-	<marquee class="some" behavior="alternate" scrollamount=10 align="center"><h1>Linked Scheduling</h1></marquee>
-	<!-- <a class="button1" style="align:center" href="Index page/index._page.html">Go Back</a> -->
-<p > Enter the number of files </p>
-	<input id="nof" type="number">
+		<button class="button1"  onclick="show_fields()">OK</button>
 
-	<button class="button1"  onclick="show_fields()">OK</button>
-	
-	<!-- =======================input fields =================================-->
-	<form class="s_hide">
-			<p> Your First File </p>
-		Starting Block:	<input id="file_no" type="number">
-		Enter the size of the file:	 <input type="number">
-		Enter the size of the block: <input type="number">
-		<div class="anchor" onclick="inside_form(0)">
-			<a >DONE</a> 
-		</div align="left">
-			<ul>
-			<li class="s_hide">	Block_1: <input  type="number"></li>
-			<li class="s_hide">	Block_2: <input  type="number"></li>
-			<li class="s_hide">	Block_3: <input  type="number"></li>
-			<li class="s_hide">	Block_4: <input  type="number"></li>
-			<li class="s_hide">	Block_5: <input  type="number"></li>
-			<li class="s_hide">	Block_6: <input  type="number"></li>
-			<li class="s_hide">	Block_7: <input  type="number"></li>
-			<li class="s_hide">	Block_8: <input  type="number"></li>
-			<li class="s_hide">	Block_9: <input  type="number"></li>
-			<li class="s_hide">	Block_10:<input type="number"></li>		
-			</ul>
-			<div class="anchor" onclick="allocate(0)">
-			<a>ALLOCATE</a>  
-			</div>
-			<div class="anchor1" onclick="del(0)">
-				<a>CONFIRM</a> 
-			</div>
-			<p class="frag_place" style="background-color: black ;color:white"></p><br>
-		
-		</form>
-
-	<form class="s_hide">
-			<p> Your Second File </p>
-		Starting block:	<input  id="file_no" type="number">
-		Enter the size of the file:	 <input type="number">
-		Enter the size of the block: <input type="number">
-		<div class="anchor" onclick="inside_form(1)">
-			<a >DONE</a> 
-		</div>
-			<ul>
-			<li class="s_hide">	Block_1: <input  type="number"></li>
-			<li class="s_hide">	Block_2: <input  type="number"></li>
-			<li class="s_hide">	Block_3: <input  type="number"></li>
-			<li class="s_hide">	Block_4: <input  type="number"></li>
-			<li class="s_hide">	Block_5: <input  type="number"></li>
-			<li class="s_hide">	Block_6: <input  type="number"></li>
-			<li class="s_hide">	Block_7: <input  type="number"></li>
-			<li class="s_hide">	Block_8: <input  type="number"></li>
-			<li class="s_hide">	Block_9: <input  type="number"></li>
-			<li class="s_hide">	Block_10:<input type="number"></li>		
-			</ul>
-			<div class="anchor" onclick="allocate(1)">
-			<a >ALLOCATE</a>  
-		</div>
-			<div class="anchor1" onclick="del(1)">
-				<a>CONFIRM</a> 
-			</div>
-			<p class="frag_place" style="background-color: black ;color:white"></p><br>
-	
-	</form>
-
-	<form class="s_hide">
-			<p> Your Third File </p>
-		Starting block:	<input  id="file_no" type="number">
-		Enter the size of the file:	 <input type="number">
-		Enter the size of the block: <input type="number">
-		<div class="anchor">
-			<a onclick="inside_form(2)">DONE</a> 
-		</div>
-			<ul>
-			<li class="s_hide">	Block_1: <input  type="number"></li>
-			<li class="s_hide">	Block_2: <input  type="number"></li>
-			<li class="s_hide">	Block_3: <input  type="number"></li>
-			<li class="s_hide">	Block_4: <input  type="number"></li>
-			<li class="s_hide">	Block_5: <input  type="number"></li>
-			<li class="s_hide">	Block_6: <input  type="number"></li>
-			<li class="s_hide">	Block_7: <input  type="number"></li>
-			<li class="s_hide">	Block_8: <input  type="number"></li>
-			<li class="s_hide">	Block_9: <input  type="number"></li>
-			<li class="s_hide">	Block_10:<input type="number"></li>		
-			</ul>
-			<div class="anchor" onclick="allocate(2)">
-			<a>ALLOCATE</a>  
-		</div>
-		<div class="anchor1" onclick="del(2)">
-				<a>CONFIRM</a> 
-			</div>
-		  <p class="frag_place" style="background-color: black ;color:white"></p><br>
-		
-	</form>
-
-	<form class="s_hide">
-			<p> Your Fourth File </p>
-		Strating block:	<input  id="file_no" type="number">
-		Enter the size of the file:	 <input type="number">
-		Enter the size of the block: <input type="number">
-		<div class="anchor">
-			<a onclick="inside_form(3)">DONE</a> 
-		</div>
-			<ul>
-			<li class="s_hide">	Block_1: <input  type="number"></li>
-			<li class="s_hide">	Block_2: <input  type="number"></li>
-			<li class="s_hide">	Block_3: <input  type="number"></li>
-			<li class="s_hide">	Block_4: <input  type="number"></li>
-			<li class="s_hide">	Block_5: <input  type="number"></li>
-			<li class="s_hide">	Block_6: <input  type="number"></li>
-			<li class="s_hide">	Block_7: <input  type="number"></li>
-			<li class="s_hide">	Block_8: <input  type="number"></li>
-			<li class="s_hide">	Block_9: <input  type="number"></li>
-			<li class="s_hide">	Block_10:<input type="number"></li>		
-			</ul>
-			<div class="anchor">
-			<a onclick="allocate(3)">ALLOCATE</a>  
-		</div>
-		<div class="anchor1" onclick="del(3)">
-				<a>CONFIRM</a> 
-			</div>
-		    <p class="frag_place" style="background-color: black ;color:white"></p><br>
-	</form>
-
+		<!-- =======================input fields =================================-->
 		<form class="s_hide">
-			<p> Your Fifth File </p>
-		Starting block:	<input  id="file_no" type="number">
-		Enter the size of the file:	 <input type="number">
-		Enter the size of the block: <input type="number">
-		<div class="anchor">
-			<a onclick="inside_form(4)">DONE</a> 
-		</div>
-			<ul>
-			<li class="s_hide">	Block_1: <input  type="number"></li>
-			<li class="s_hide">	Block_2: <input  type="number"></li>
-			<li class="s_hide">	Block_3: <input  type="number"></li>
-			<li class="s_hide">	Block_4: <input  type="number"></li>
-			<li class="s_hide">	Block_5: <input  type="number"></li>
-			<li class="s_hide">	Block_6: <input  type="number"></li>
-			<li class="s_hide">	Block_7: <input  type="number"></li>
-			<li class="s_hide">	Block_8: <input  type="number"></li>
-			<li class="s_hide">	Block_9: <input  type="number"></li>
-			<li class="s_hide">	Block_10:<input type="number"></li>		
-			</ul>
-		<div class="anchor">	
-			<a onclick="allocate(4)">ALLOCATE</a> 
-		</div>
-		<div class="anchor1" onclick="del(4)">
-				<a>CONFIRM</a> 
-			</div>
-		<p class="frag_place" style="background-color: black ;color:white"></p><br>
-		</form>
-
-		<form class="s_hide">
-			<p> Your Sixth File </p>
-		Starting block:	<input  id="file_no" type="number">
-		Enter the size of the file:	 <input type="number">
-		Enter the size of the block: <input type="number">
-		<div class="anchor">
-			<a onclick="inside_form(5)">ok</a> 
-		</div>
+				<p> Your First File </p>
+			Starting Block:	<input id="file_no" type="number">
+			Enter the size of the file:	 <input type="number">
+			Enter the size of the block: <input type="number">
+			<div class="anchor" onclick="inside_form(0)">
+				<a >DONE</a>
+			</div align="left">
 				<ul>
-			<li class="s_hide">	Block_1:<input  type="number"></li>
-			<li class="s_hide">	Block_2:<input  type="number"></li>
-			<li class="s_hide">	Block_3:<input  type="number"></li>
-			<li class="s_hide">	Block_4:<input  type="number"></li>
-			<li class="s_hide">	Block_5:<input  type="number"></li>
-			<li class="s_hide">	Block_6:<input  type="number"></li>
-			<li class="s_hide">	Block_7:<input  type="number"></li>
-			<li class="s_hide">	Block_8:<input  type="number"></li>
-			<li class="s_hide">	Block_9:<input  type="number"></li>
-			<li class="s_hide">	Block_10:<input type="number"></li>		
-			</ul>
-			<div class="anchor">
-			<a onclick="allocate(5)">ALLOCATE</a> 
-		</div>
-		<div class="anchor1" onclick="del(5)">
-				<a>CONFIRM</a> 
+				<li class="s_hide">	Block_1: <input  type="number"></li>
+				<li class="s_hide">	Block_2: <input  type="number"></li>
+				<li class="s_hide">	Block_3: <input  type="number"></li>
+				<li class="s_hide">	Block_4: <input  type="number"></li>
+				<li class="s_hide">	Block_5: <input  type="number"></li>
+				<li class="s_hide">	Block_6: <input  type="number"></li>
+				<li class="s_hide">	Block_7: <input  type="number"></li>
+				<li class="s_hide">	Block_8: <input  type="number"></li>
+				<li class="s_hide">	Block_9: <input  type="number"></li>
+				<li class="s_hide">	Block_10:<input type="number"></li>
+				</ul>
+				<div class="anchor" onclick="allocate(0)">
+				<a>ALLOCATE</a>
+				</div>
+				<div class="anchor1" onclick="del(0)">
+					<a>CONFIRM</a>
+				</div>
+				<p class="frag_place" style="background-color: black ;color:white"></p><br>
+
+			</form>
+
+		<form class="s_hide">
+				<p> Your Second File </p>
+			Starting block:	<input  id="file_no" type="number">
+			Enter the size of the file:	 <input type="number">
+			Enter the size of the block: <input type="number">
+			<div class="anchor" onclick="inside_form(1)">
+				<a >DONE</a>
 			</div>
-		 <p class="frag_place" style="background-color: black ;color:white"></p><br>
+				<ul>
+				<li class="s_hide">	Block_1: <input  type="number"></li>
+				<li class="s_hide">	Block_2: <input  type="number"></li>
+				<li class="s_hide">	Block_3: <input  type="number"></li>
+				<li class="s_hide">	Block_4: <input  type="number"></li>
+				<li class="s_hide">	Block_5: <input  type="number"></li>
+				<li class="s_hide">	Block_6: <input  type="number"></li>
+				<li class="s_hide">	Block_7: <input  type="number"></li>
+				<li class="s_hide">	Block_8: <input  type="number"></li>
+				<li class="s_hide">	Block_9: <input  type="number"></li>
+				<li class="s_hide">	Block_10:<input type="number"></li>
+				</ul>
+				<div class="anchor" onclick="allocate(1)">
+				<a >ALLOCATE</a>
+			</div>
+				<div class="anchor1" onclick="del(1)">
+					<a>CONFIRM</a>
+				</div>
+				<p class="frag_place" style="background-color: black ;color:white"></p><br>
+
 		</form>
 
 		<form class="s_hide">
-			<p> Your Seventh File </p>
-		Starting block:	<input  id="file_no" type="number">
-		Enter the size of the file:	 <input type="number">
-		Enter the size of the block: <input type="number">
-		<div class="anchor">
-			<a onclick="inside_form(6)">DONE</a> 
-		</div>
-			<ul>
-			<li class="s_hide">	Block_1: <input  type="number"></li>
-			<li class="s_hide">	Block_2: <input  type="number"></li>
-			<li class="s_hide">	Block_3: <input  type="number"></li>
-			<li class="s_hide">	Block_4: <input  type="number"></li>
-			<li class="s_hide">	Block_5: <input  type="number"></li>
-			<li class="s_hide">	Block_6: <input  type="number"></li>
-			<li class="s_hide">	Block_7: <input  type="number"></li>
-			<li class="s_hide">	Block_8: <input  type="number"></li>
-			<li class="s_hide">	Block_9: <input  type="number"></li>
-			<li class="s_hide">	Block_10:<input type="number"></li>		
-			</ul>
+				<p> Your Third File </p>
+			Starting block:	<input  id="file_no" type="number">
+			Enter the size of the file:	 <input type="number">
+			Enter the size of the block: <input type="number">
 			<div class="anchor">
-			<a onclick="allocate(6)">ALLOCATE</a> 
-		</div>
-		<div class="anchor1" onclick="del(6)">
-				<a>CONFIRM</a> 
+				<a onclick="inside_form(2)">DONE</a>
 			</div>
-		    <p class="frag_place" style="background-color: black ;color:white"></p><br>
+				<ul>
+				<li class="s_hide">	Block_1: <input  type="number"></li>
+				<li class="s_hide">	Block_2: <input  type="number"></li>
+				<li class="s_hide">	Block_3: <input  type="number"></li>
+				<li class="s_hide">	Block_4: <input  type="number"></li>
+				<li class="s_hide">	Block_5: <input  type="number"></li>
+				<li class="s_hide">	Block_6: <input  type="number"></li>
+				<li class="s_hide">	Block_7: <input  type="number"></li>
+				<li class="s_hide">	Block_8: <input  type="number"></li>
+				<li class="s_hide">	Block_9: <input  type="number"></li>
+				<li class="s_hide">	Block_10:<input type="number"></li>
+				</ul>
+				<div class="anchor" onclick="allocate(2)">
+				<a>ALLOCATE</a>
+			</div>
+			<div class="anchor1" onclick="del(2)">
+					<a>CONFIRM</a>
+				</div>
+			  <p class="frag_place" style="background-color: black ;color:white"></p><br>
+
 		</form>
 
 		<form class="s_hide">
-			<p> Your Eight File </p>
-		Strating block:	<input  id="file_no" type="number">
-		Enter the size of the file:	 <input type="number">
-		Enter the size of the block: <input type="number">
-		<div class="anchor">
-			<a onclick="inside_form(7)">DONE</a> 
-		</div>
-			<ul>
-			<li class="s_hide">	Block_1: <input  type="number"></li>
-			<li class="s_hide">	Block_2: <input  type="number"></li>
-			<li class="s_hide">	Block_3: <input  type="number"></li>
-			<li class="s_hide">	Block_4: <input  type="number"></li>
-			<li class="s_hide">	Block_5: <input  type="number"></li>
-			<li class="s_hide">	Block_6: <input  type="number"></li>
-			<li class="s_hide">	Block_7: <input  type="number"></li>
-			<li class="s_hide">	Block_8: <input  type="number"></li>
-			<li class="s_hide">	Block_9: <input  type="number"></li>
-			<li class="s_hide">	Block_10:<input type="number"></li>		
-			</ul>
+				<p> Your Fourth File </p>
+			Strating block:	<input  id="file_no" type="number">
+			Enter the size of the file:	 <input type="number">
+			Enter the size of the block: <input type="number">
 			<div class="anchor">
-				<a onclick="allocate(7)">ALLOCATE</a> 
+				<a onclick="inside_form(3)">DONE</a>
 			</div>
-			<div class="anchor1" onclick="del(7)">
-				<a>CONFIRM</a> 
+				<ul>
+				<li class="s_hide">	Block_1: <input  type="number"></li>
+				<li class="s_hide">	Block_2: <input  type="number"></li>
+				<li class="s_hide">	Block_3: <input  type="number"></li>
+				<li class="s_hide">	Block_4: <input  type="number"></li>
+				<li class="s_hide">	Block_5: <input  type="number"></li>
+				<li class="s_hide">	Block_6: <input  type="number"></li>
+				<li class="s_hide">	Block_7: <input  type="number"></li>
+				<li class="s_hide">	Block_8: <input  type="number"></li>
+				<li class="s_hide">	Block_9: <input  type="number"></li>
+				<li class="s_hide">	Block_10:<input type="number"></li>
+				</ul>
+				<div class="anchor">
+				<a onclick="allocate(3)">ALLOCATE</a>
 			</div>
-                 <p class="frag_place" style="background-color: black ;color:white"></p><br>
+			<div class="anchor1" onclick="del(3)">
+					<a>CONFIRM</a>
+				</div>
+			    <p class="frag_place" style="background-color: black ;color:white"></p><br>
 		</form>
 
-<p id="error_check"></p>
-<div class="s_hide" id="output_space">
-	<p class="out"></p>
-	<p class="out"></p>
-	<p class="out"></p>
-	<p class="out"></p>
-	<p class="out"></p>
-	<p class="out"></p>
-	<p class="out"></p>
-	<p class="out"></p>	
-		
+			<form class="s_hide">
+				<p> Your Fifth File </p>
+			Starting block:	<input  id="file_no" type="number">
+			Enter the size of the file:	 <input type="number">
+			Enter the size of the block: <input type="number">
+			<div class="anchor">
+				<a onclick="inside_form(4)">DONE</a>
+			</div>
+				<ul>
+				<li class="s_hide">	Block_1: <input  type="number"></li>
+				<li class="s_hide">	Block_2: <input  type="number"></li>
+				<li class="s_hide">	Block_3: <input  type="number"></li>
+				<li class="s_hide">	Block_4: <input  type="number"></li>
+				<li class="s_hide">	Block_5: <input  type="number"></li>
+				<li class="s_hide">	Block_6: <input  type="number"></li>
+				<li class="s_hide">	Block_7: <input  type="number"></li>
+				<li class="s_hide">	Block_8: <input  type="number"></li>
+				<li class="s_hide">	Block_9: <input  type="number"></li>
+				<li class="s_hide">	Block_10:<input type="number"></li>
+				</ul>
+			<div class="anchor">
+				<a onclick="allocate(4)">ALLOCATE</a>
+			</div>
+			<div class="anchor1" onclick="del(4)">
+					<a>CONFIRM</a>
+				</div>
+			<p class="frag_place" style="background-color: black ;color:white"></p><br>
+			</form>
+
+			<form class="s_hide">
+				<p> Your Sixth File </p>
+			Starting block:	<input  id="file_no" type="number">
+			Enter the size of the file:	 <input type="number">
+			Enter the size of the block: <input type="number">
+			<div class="anchor">
+				<a onclick="inside_form(5)">ok</a>
+			</div>
+					<ul>
+				<li class="s_hide">	Block_1:<input  type="number"></li>
+				<li class="s_hide">	Block_2:<input  type="number"></li>
+				<li class="s_hide">	Block_3:<input  type="number"></li>
+				<li class="s_hide">	Block_4:<input  type="number"></li>
+				<li class="s_hide">	Block_5:<input  type="number"></li>
+				<li class="s_hide">	Block_6:<input  type="number"></li>
+				<li class="s_hide">	Block_7:<input  type="number"></li>
+				<li class="s_hide">	Block_8:<input  type="number"></li>
+				<li class="s_hide">	Block_9:<input  type="number"></li>
+				<li class="s_hide">	Block_10:<input type="number"></li>
+				</ul>
+				<div class="anchor">
+				<a onclick="allocate(5)">ALLOCATE</a>
+			</div>
+			<div class="anchor1" onclick="del(5)">
+					<a>CONFIRM</a>
+				</div>
+			 <p class="frag_place" style="background-color: black ;color:white"></p><br>
+			</form>
+
+			<form class="s_hide">
+				<p> Your Seventh File </p>
+			Starting block:	<input  id="file_no" type="number">
+			Enter the size of the file:	 <input type="number">
+			Enter the size of the block: <input type="number">
+			<div class="anchor">
+				<a onclick="inside_form(6)">DONE</a>
+			</div>
+				<ul>
+				<li class="s_hide">	Block_1: <input  type="number"></li>
+				<li class="s_hide">	Block_2: <input  type="number"></li>
+				<li class="s_hide">	Block_3: <input  type="number"></li>
+				<li class="s_hide">	Block_4: <input  type="number"></li>
+				<li class="s_hide">	Block_5: <input  type="number"></li>
+				<li class="s_hide">	Block_6: <input  type="number"></li>
+				<li class="s_hide">	Block_7: <input  type="number"></li>
+				<li class="s_hide">	Block_8: <input  type="number"></li>
+				<li class="s_hide">	Block_9: <input  type="number"></li>
+				<li class="s_hide">	Block_10:<input type="number"></li>
+				</ul>
+				<div class="anchor">
+				<a onclick="allocate(6)">ALLOCATE</a>
+			</div>
+			<div class="anchor1" onclick="del(6)">
+					<a>CONFIRM</a>
+				</div>
+			    <p class="frag_place" style="background-color: black ;color:white"></p><br>
+			</form>
+
+			<form class="s_hide">
+				<p> Your Eight File </p>
+			Strating block:	<input  id="file_no" type="number">
+			Enter the size of the file:	 <input type="number">
+			Enter the size of the block: <input type="number">
+			<div class="anchor">
+				<a onclick="inside_form(7)">DONE</a>
+			</div>
+				<ul>
+				<li class="s_hide">	Block_1: <input  type="number"></li>
+				<li class="s_hide">	Block_2: <input  type="number"></li>
+				<li class="s_hide">	Block_3: <input  type="number"></li>
+				<li class="s_hide">	Block_4: <input  type="number"></li>
+				<li class="s_hide">	Block_5: <input  type="number"></li>
+				<li class="s_hide">	Block_6: <input  type="number"></li>
+				<li class="s_hide">	Block_7: <input  type="number"></li>
+				<li class="s_hide">	Block_8: <input  type="number"></li>
+				<li class="s_hide">	Block_9: <input  type="number"></li>
+				<li class="s_hide">	Block_10:<input type="number"></li>
+				</ul>
+				<div class="anchor">
+					<a onclick="allocate(7)">ALLOCATE</a>
+				</div>
+				<div class="anchor1" onclick="del(7)">
+					<a>CONFIRM</a>
+				</div>
+	                 <p class="frag_place" style="background-color: black ;color:white"></p><br>
+			</form>
+
+	<p id="error_check"></p>
+	<div class="s_hide" id="output_space">
+		<p class="out"></p>
+		<p class="out"></p>
+		<p class="out"></p>
+		<p class="out"></p>
+		<p class="out"></p>
+		<p class="out"></p>
+		<p class="out"></p>
+		<p class="out"></p>
+
+	</div>
 </div>
+	</div>
+
 </body>
 
 <script>
@@ -372,9 +367,9 @@
 	function show_fields()
 	{
 			var no_of_files = document.getElementById("nof").value;
-			for(var i=0;i<no_of_files;++i)	
+			for(var i=0;i<no_of_files;++i)
 				s_add_in();
-		
+
 	}
 
 	function s_add_in()
@@ -445,7 +440,7 @@ windows.onload = function()
 		{
 			alert("The file index "+ index +"is already allocated");
 			return 0;
-		}	
+		}
 		else
 		{
 			file_ind[index]  =1;
@@ -476,11 +471,11 @@ windows.onload = function()
 				alert("The file index "+ x +" is already allocated");
 				return;
 			}
-			
+
 			else{
 				file_ind[x]=1;
 			}
-			
+
 			if(i == no_of_blocks-1)
 			{
 				alert("All the files have been allocated");
@@ -507,10 +502,10 @@ windows.onload = function()
 
 							// im retriving the file number(block number) and put it in the chosen paragraphs
 							var x1 = document.getElementsByTagName("li")[values+i];
-							var x = x1.getElementsByTagName("input")[0].value;	
+							var x = x1.getElementsByTagName("input")[0].value;
 							if(i== no_of_blocks-1)
 							{
-								str = str + "--->" + x;	
+								str = str + "--->" + x;
 							}
 							else{
 								str = str + "--->" + x;
@@ -562,15 +557,15 @@ windows.onload = function()
                           for(var i=0;i<no_of_blocks;++i)
 						{
 							var x1 = document.getElementsByTagName("li")[values+i];
-							var x = x1.getElementsByTagName("input")[0].value;	
+							var x = x1.getElementsByTagName("input")[0].value;
 							if(i== no_of_blocks-1)
 							{
-								str = str + "--->" + x;	
+								str = str + "--->" + x;
 							}
 							else{
 								str = str + "--->" + x;
 							}
-							
+
 							/* for file 1 give red,2->blue*/
 							//here we style the output paragraph
 							if(i== no_of_blocks-1){
@@ -632,7 +627,7 @@ windows.onload = function()
 
 			var no_of_blocks = Math.ceil (file_size / blk_size);
 
-			
+
 
 			if(i == in_form)
 			{
@@ -649,7 +644,7 @@ windows.onload = function()
 			}
 
 			out_start = out_start + no_of_blocks;
-		}	
+		}
 	}
 
 </script>

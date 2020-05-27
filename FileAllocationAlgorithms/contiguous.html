@@ -7,35 +7,21 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- <script src="file.js"></script> -->
-        <link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     </head>
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-
-            <img src = "home.png" width="25" height="25" >
-            <a class="navbar-brand" href="../Index/index.html#firstPage">Operating System Simulator</a>
+            <a class="navbar-brand" href="../Index/index.html#filealloc">Home</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
                 <span class="navbar-toggler-icon"></span>
-              </button>    
-
-               <div class="dropdown">
-                <span style="margin-left: 900px; font-size: 20px ;"><a href="https://github.com/rounak06/pdffile/blob/master/wikifile.pdf" style="color: white;">Wiki</a></span>
-                <div class="dropdown-content" style="position: relative;">
-                <p>The allocation method defines how the files are stored in the disk blocks. The direct access nature of the disks gives us the flexibility to implement the files. In many cases, different files or many files are stored on the same disk. The main problem that occurs in the<span id="dots">...</span><span id="more"></p>
-                   
-                 </div>
-                </div> 
+              </button>
           </nav>
-          <marquee class="some" behavior="alternate" scrollamount=10 align="center"><h1>Contiguous Scheduling</h1></marquee>
 
             <div class="container">
-                <!-- <div class="jumbotron">
-                    <h1 class="display-3">Disk Scheduling</h1>
-                    <p class="lead">Disk scheduling is the method that computer operating systems use to decide in which order the block I/O operations will be submitted to storage volumes. I/O scheduling is sometimes called disk scheduling.</p>
-                    <hr class="my-4">
-                    <p>Some more details here</p>
-                </div> -->
+            </br>
+              <div class="jumbotron">
+              <h1>Contiguous Scheduling</h1>
                 <script>
                     function option(nameSelect)
                     {
@@ -43,6 +29,8 @@
                        document.getElementById("admDivCheck").style.display="none";
                     }
                 </script>
+                <p>The allocation method defines how the files are stored in the disk blocks. The direct access nature of the disks gives us the flexibility to implement the files.</p>
+                </br>
                 <form>
                     <fieldset>
                         <div class="row">
@@ -80,6 +68,7 @@
                 <input type="button" class="button2" value="Submit"  onclick="filealgo(document.getElementById('algorithm').value,document.getElementById('bitstream-input').value,document.getElementById('initial-input').value,document.getElementById('final-input').value)">
             </form>
             </div>
+          </div>
             <br>
             <br>
             <script >
@@ -114,11 +103,11 @@
                     var bindex = new Array(50);
                     var allocate = [];
                      var text1 = "";
-                     
+
                     for(i=0;i<50;i++)
                     {
                         bvisited[i]=0;
-                        bindex[i]=i;                    
+                        bindex[i]=i;
                     }
                     var filelength = inp.length;
                     var sindex=0,count=0,count_blocks=0;
@@ -181,5 +170,3 @@
             <br>
         </body>
         </html>
-
-
