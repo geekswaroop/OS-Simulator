@@ -2,6 +2,10 @@ h1 {
     font-size: 40px;
 }
 
+body{
+    background-color: grey;
+}
+
 body > div > ul {
     padding: 0;
     margin: 0;

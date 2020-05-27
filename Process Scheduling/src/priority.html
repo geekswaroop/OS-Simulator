@@ -3,34 +3,38 @@
 <head>
     <title> Priority Scheduling </title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/pri.js"></script>
-	<link rel="stylesheet" type="text/css" href="../../Index/css/bootswatch.css" />
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/index.css"></link>
 </head>
 
 <body >
-
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="../../Index/index.html#pschedule">Go back</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+        </nav>
     <br>
 	<div class="container">
 		<!-- Input section -->
 		<div class="jumbotron">
-            <h1 class="display-3" style="color:purple"><b>Priority Scheduling</b></h1>
-		<p style="color:orange">Priority scheduling is a method of scheduling processes based on priority. In this method, the scheduler chooses the tasks to work as per the priority, which is different from other types of scheduling, for example, a simple round robin.Priority scheduling involves priority assignment to every process, and processes with higher priorities are carried out first, whereas tasks with equal priorities are carried out on a first-come-first-served (FCFS) or round robin basis.</p>
+            <h1 class="display-3">Priority Scheduling</h1>
             <br>
 			<div id="showinput"></div>
 			<hr>
 			<div class="row">
 				<div class="form-group" style="margin-left:50px; float:left;  width: 20%">
-                    <label style="color:blue" class="col-form-label" for="inputDefault">Arrival time:</label>
+                    <label class="col-form-label" for="inputDefault">Arrival time:</label>
                     <input class="form-control" id="newat" name="at" placeholder="Arrival Time" type="text" size="35">
                 </div>
 				<div class="form-group" style="margin-left:50px; float:left;  width: 20%">
-					<label style="color:blue" class="col-form-label" for="inputDefault">Burst time:</label>
+					<label class="col-form-label" for="inputDefault">Burst time:</label>
 					<input class="form-control" id="newbt" name="bt" placeholder="Burst Time" type="text" size="35">
 				</div>
 				<div class="form-group" style="margin-left:50px; float:left;  width: 20%">
-					<label style="color:blue" class="col-form-label" for="inputDefault">Priority:</label>
+					<label class="col-form-label" for="inputDefault">Priority:</label>
 					<input class="form-control" id="newpri" name="priority" placeholder="Priority" type="text" size="35">
 				</div>
 			</div>
@@ -44,15 +48,26 @@
 				</select>
 			</div>
 			<br>
-
-			<button type="submit" id="run" class="btn btn-primary" style="margin-left: 36px; float: right;" onclick="showOutput(2)">Schedule</button>
+			<button type="submit" id="clear" class="btn btn-primary" style="margin-left: 36px; float: right;" onclick="clearData()">Clear Data</button>
+			<button type="submit" id="run" class="btn btn-primary" style="margin-left: 36px; float: right;" onclick="showOutput(2)">Schedule It!</button>
 		</div>
 		<!-- Gantt Chart -->
 		<div style="margin-top: 150px;">
-
+			<h2 id ="chart-header" style="text-align:center;"></h2>
+			<br />
+			<div id="gantt"></div>
+			<div id="timer"></div>
+			<br /><br />
+			<div>
+				<div style="width: 50%; text-align:center;float:left; font-size: 20px;" id="awt1"></div>
+				<div style="width:50%; text-align:center;float:left;font-size:20px;" id="atat1"></div>
+            </div>
         </div>
 		<!-- CPU Operations -->
-
+		<div style="margin-top: 100px;">
+			<h3 id="operations-heading" style="text-align:center;"></h3>
+			<div id="operations"></div>
+		</div>
 		<!-- Table -->
 		<div style="margin-top: 50px;">
 			<h2 id="table-heading" style="text-align:center;"></h2>
@@ -62,19 +77,6 @@
 					<tbody id="ptable"></tbody>
 				</table>
 			</div>
-      <div style="margin-top: 100px;">
-  			<h3 id="operations-heading" style="text-align:center;"></h3>
-  			<div id="operations"></div>
-  		</div>
-      <h2 id ="chart-header" style="text-align:center;"></h2>
-			<br />
-			<div id="gantt"></div>
-			<div id="timer"></div>
-			<br /><br />
-			<div>
-				<div style="width: 50%; text-align:center;float:left; font-size: 20px;" id="awt1"></div>
-				<div style="width:50%; text-align:center;float:left;font-size:20px;" id="atat1"></div>
-            </div>
 		</div>
 	</div>
 </body>

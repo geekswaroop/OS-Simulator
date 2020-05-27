@@ -3,19 +3,24 @@
 <head>
     <title> RR Scheduling </title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/index.js"></script>
-	<link rel="stylesheet" type="text/css" href="../../Index/css/bootswatch.css" />
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/index.css"></link>
 
 </head>
 <body >
-
+<!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="../../Index/index.html#pschedule">Go back</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+        </nav>
 	<br>
 	<div class="container">
 		<div class="jobotron">
-			<h1 class="display-3" style="color:purple"><b>RR Scheduling</b></h1>
-			<p style="color=orange">Round Robin scheduling algorithm is one of the most popular scheduling algorithm which can actually be implemented in most of the operating systems. This is the preemptive version of first come first serve scheduling. The Algorithm focuses on Time Sharing. In this algorithm, every process gets executed in a cyclic way. A certain time slice is defined in the system which is called time quantum. Each process present in the ready queue is assigned the CPU for that time quantum, if the execution of the process is completed during that time then the process will terminate else the process will go back to the ready queue and waits for the next turn to complete the execution</p>
+			<h1 class="display-3">RR Scheduling</h1>
             <br>
 			<div id="showinput"></div>
 			<hr>
@@ -42,17 +47,28 @@
     </div>
     -->
 			<div style="margin-top: 50px;">
-
-				<button type="submit" class="btn btn-primary" style="margin-left: 36px; float: right;" onclick="showOutput(3)">Schedule</button>
+				<button type="submit" class="btn btn-primary" style="margin-left: 36px; float: right;" onclick="clearData()">Clear Data</button>
+				<button type="submit" class="btn btn-primary" style="margin-left: 36px; float: right;" onclick="showOutput(3)">Schedule It!</button>
 			</div>
 		</div>
 		<!-- Gantt Chart -->
 		<div style="margin-top: 150px;">
-
+			<h2 id ="chart-header" style="text-align:center;"></h2>
+			<br />
+			<div id="gantt"></div>
+			<div id="timer"></div>
+			<br /><br />
+			<div>
+				<div style="width: 50%; text-align:center;float:left; font-size: 20px;" id="awt1"></div>
+				<div style="width: 50%; text-align:center;float:left; font-size: 20px;" id="atat1"></div>
+            </div>
         </div>
 		<br>
 		<!-- CPU Operations -->
-
+		<div style="margin-top: 100px;">
+			<h3 id="operations-heading" style="text-align:center;"></h3>
+			<div id="operations"></div>
+		</div>
 		<!-- Table -->
 		<div style="margin-top: 50px;">
 			<h2 id="table-heading" style="text-align:center;"></h2>
@@ -62,19 +78,6 @@
 					<tbody id="ptable"></tbody>
 				</table>
 			</div>
-      <div style="margin-top: 100px;">
-  			<h3 id="operations-heading" style="text-align:center;"></h3>
-  			<div id="operations"></div>
-  		</div>
-      <h2 id ="chart-header" style="text-align:center;"></h2>
-			<br />
-			<div id="gantt"></div>
-			<div id="timer"></div>
-			<br /><br />
-			<div>
-				<div style="width: 50%; text-align:center;float:left; font-size: 20px;" id="awt1"></div>
-				<div style="width: 50%; text-align:center;float:left; font-size: 20px;" id="atat1"></div>
-            </div>
 		</div>
 </body>
 </html>

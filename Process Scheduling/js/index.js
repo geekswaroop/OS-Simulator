@@ -8,7 +8,7 @@ var pixel = 0;
 var t = 0;
 var flg = -1;
 var quantum;
-function addToList() {
+function addToList() {   
     var at = document.getElementById("newat").value;
     var bt = document.getElementById("newbt").value;
     if (isNaN(parseInt(at)) && isNaN(parseInt(bt))) {
@@ -76,12 +76,12 @@ function displayList() {
         input2.setAttribute("disabled", "disabled");
         input2.setAttribute("id", "bt" + i);
         input2.setAttribute("style", "width:50px;float:left;margin-left:100px;margin-right:100px;text-align:center;");
-        //var btn = document.createElement("button");
-        //var text1 = document.createTextNode("EDIT");
-        //btn.appendChild(text1);
-        //btn.setAttribute("id", "btn" + i);
-        //btn.setAttribute("class", "btn btn-warning");
-        //btn.setAttribute("onclick", "edit(this.id)");
+        var btn = document.createElement("button");
+        var text1 = document.createTextNode("EDIT");
+        btn.appendChild(text1);
+        btn.setAttribute("id", "btn" + i);
+        btn.setAttribute("class", "btn btn-warning");
+        btn.setAttribute("onclick", "edit(this.id)");
         //btn.setAttribute("style", "float:right;margin-right:50px;");
         var br = document.createElement("br");
         card.appendChild(pid);
@@ -431,7 +431,7 @@ function fcfs() {
             p[i].ct = t;
             p[i].tat = t - p[i].at;
             p[i].wt = p[i].tat - p[i].bt;
-
+            
         }
         else {
             var newdiv = document.createElement("div");
@@ -448,7 +448,7 @@ function fcfs() {
             t = p[i].at;
             var newdiv = document.createElement("div");
             newdiv.setAttribute("style", "text-align: center; margin: auto; width:100%; font-size: 20px;");
-            newdiv.textContent = "t = " + t + ": Process-" + p[i].id + " entered CPU and being executed";
+            newdiv.textContent = "t = " + t + ": Process-" + p[i].id + " entered CPU and being executed"; 
             operation.appendChild(br);
             operation.appendChild(newdiv);
             operation.appendChild(br);
@@ -461,7 +461,7 @@ function fcfs() {
             p[i].ct = t;
             p[i].tat = t - p[i].at;
             p[i].wt = p[i].tat - p[i].bt;
-
+            
         }
     }
     var total_tat = 0.0, total_wt = 0.0;
@@ -547,12 +547,12 @@ function showOutput(flag) {
     th6.textContent = "Turnaround Time";
     tr.appendChild(th6);
     thead.appendChild(tr);
-
+   
     var p1 = document.createElement("p");
     p1.textContent = "Average waiting time: " + awt + " units";
     awt2.appendChild(p1);
     var p2 = document.createElement("p");
-    p2.textContent = "Average turn around time: " + atat + " units";
+    p2.textContent = "Average turn around time: " + atat + " units"; 
     atat2.appendChild(p2);
     drawChart();
     drawTable();
@@ -569,7 +569,7 @@ function drawChart() {
         d.setAttribute("class", "block");
         var id1 = gantt[i].id;
         d.setAttribute("id", "P-" + gantt[i].id);
-
+        
         if (gantt[i].id == -1) {
             d.textContent = "";
             d.setAttribute("style", "float:left;width:" + divWidth + "px; height:100px;");
@@ -578,7 +578,7 @@ function drawChart() {
             d.setAttribute("style", "float:left;width: "+divWidth+"px; height: 100px;background-color:"+colors[id1 - 1]+";font-size:20px;text-align:center;");
             d.textContent = "P-" + gantt[i].id;
         }
-        gt.appendChild(d);
+        gt.appendChild(d); 
         var d1 = document.createElement("div");
         d1.setAttribute("style", "float:left;width:" + divWidth + "px;");
         d1.textContent = gantt[i].start;
